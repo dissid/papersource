@@ -1,17 +1,15 @@
 package pages;
 
-import com.codeborne.selenide.Selenide;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.openqa.selenium.support.ui.ExpectedConditions.jsReturnsValue;
 
 public class Registration {
 
-  public Registration givenOpenedRegistrationWithClosedSubscriptionForm(){
+  public Registration givenOpenedRegistrationWithClosedSubscriptionForm() {
     open("/customer/account/create/");
-    $("aside[data-type='slide'] .action-close").click();
+    jsReturnsValue("document.querySelector('.modals-overlay--welcome').click()");
     return this;
   }
 
@@ -27,13 +25,13 @@ public class Registration {
     return this;
   }
 
-  public Registration setPersonalInfo(String firstname, String lastname) {
-    $("#firstname").setValue(firstname);
-    $("#lastname").setValue(lastname);
+  public Registration setPersonalInfo(String firstName, String lastName) {
+    $("#firstname").setValue(firstName);
+    $("#lastname").setValue(lastName);
     return this;
   }
 
-  public void assertRedirectionToMyAccount() {
-    assertTrue(url().contains("/customer/account/"));
+  public void assertRedirectionTo(String path) {
+    assertTrue(url().contains(path));
   }
 }

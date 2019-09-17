@@ -4,7 +4,7 @@ import testConfig.BaseTest;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-public class OrderTest extends BaseTest {
+class OperationsAtOrderTest extends BaseTest {
   @Test
   void placingOrderByGuest() {
     open("/");
@@ -37,11 +37,9 @@ public class OrderTest extends BaseTest {
 
     placeOrder();
     assertOrderNumberNotEmpty();
-
-
   }
 
-  private void assertOrderNumberNotEmpty(){
+  private void assertOrderNumberNotEmpty() {
     $(".order-info span").shouldBe(not(empty));
   }
 
