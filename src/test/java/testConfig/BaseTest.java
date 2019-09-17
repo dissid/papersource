@@ -1,15 +1,16 @@
 package testConfig;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
-import static com.codeborne.selenide.Selenide.clearBrowserCookies;
-import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage;
+import static com.codeborne.selenide.Selenide.*;
 
 public class BaseTest {
 
@@ -39,6 +40,11 @@ public class BaseTest {
                     "}")
             .when()
             .post("/rest/V1/customers");
+
+  }
+
+  @BeforeEach
+  public void closeSubscriptionForm(){
 
   }
 

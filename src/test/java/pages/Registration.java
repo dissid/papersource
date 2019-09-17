@@ -3,13 +3,13 @@ package pages;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.openqa.selenium.support.ui.ExpectedConditions.jsReturnsValue;
 
 public class Registration {
 
   public Registration givenOpenedRegistrationWithClosedSubscriptionForm() {
     open("/customer/account/create/");
-    jsReturnsValue("document.querySelector('.modals-overlay--welcome').click()");
+    executeJavaScript("if (document.querySelector('.modals-overlay--welcome') !== null)" +
+            "document.querySelector('.modals-overlay--welcome').click()");
     return this;
   }
 

@@ -3,13 +3,13 @@ package pages;
 import com.codeborne.selenide.CollectionCondition;
 
 import static com.codeborne.selenide.Selenide.*;
-import static org.openqa.selenium.support.ui.ExpectedConditions.jsReturnsValue;
 
 public class ProductListing {
 
   public ProductListing openCollectionsSale() {
     open("/collections/sale");
-    jsReturnsValue("document.querySelector('.modals-overlay--welcome').click()");
+    executeJavaScript("if (document.querySelector('.modals-overlay--welcome') !== null)" +
+            "document.querySelector('.modals-overlay--welcome').click()");
     return this;
   }
 
