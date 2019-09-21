@@ -1,13 +1,14 @@
 package pages;
 
+import testConfig.Helpers;
+
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.open;
 
-public class Home {
+public class Home extends Helpers {
 
   public void openSite() {
     open("/");
-    executeJavaScript("if (document.querySelector('.modals-overlay--welcome') !== null)" +
-            "document.querySelector('.modals-overlay--welcome').click()");
+    closeSubscriptionForm();
   }
 }

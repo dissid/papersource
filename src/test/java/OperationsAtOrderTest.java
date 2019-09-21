@@ -128,7 +128,8 @@ class OperationsAtOrderTest extends BaseTest {
     $("a[href*='collections/new']").click();
   }
 
-  private void closeSubscriptionForm() {
-    $("aside[data-type='slide'] .action-close").click();
+  private void closeSubscriptionForm(){
+    executeJavaScript("if (document.querySelector('.modals-overlay--welcome') !== null)" +
+            "document.querySelector('.modals-overlay--welcome').click()");
   }
 }

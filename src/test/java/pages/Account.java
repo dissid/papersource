@@ -1,14 +1,15 @@
 package pages;
 
+import testConfig.Helpers;
+
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.Selenide.*;
 
-public class Account {
+public class Account extends Helpers {
 
   public Account givenOpenedMyAccountWithLoggedIn() {
     open("/customer/account/");
-    executeJavaScript("if (document.querySelector('.modals-overlay--welcome') !== null)" +
-            "document.querySelector('.modals-overlay--welcome').click()");
+    closeSubscriptionForm();
 
     $("#email").setValue("postman@gorillagroup.com");
     $("#pass").setValue("Q1w2e3r4");
@@ -17,7 +18,7 @@ public class Account {
     return this;
   }
 
-  public Account openEditing() {
+  public Account activeEditing() {
     $(".block-dashboard-info .edit").click();
     return this;
   }

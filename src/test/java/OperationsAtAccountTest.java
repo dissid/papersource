@@ -15,7 +15,7 @@ class OperationsAtAccountTest extends BaseTest {
 
 
   @Test
-  void createAccount() {
+  void creating() {
     registration
             .givenOpenedRegistrationWithClosedSubscriptionForm()
             .setPersonalInfo("Smoke", "Automation")
@@ -27,9 +27,9 @@ class OperationsAtAccountTest extends BaseTest {
   }
 
   @Test
-  void editAccount() {
+  void editing() {
     account.givenOpenedMyAccountWithLoggedIn()
-            .openEditing()
+            .activeEditing()
             .edit("Smoke Edited", "Automation Edited")
             .submit()
             .assertAccountInfo("Smoke Edited", "Automation Edited", "postman@gorillagroup.com");

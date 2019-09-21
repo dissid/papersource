@@ -1,16 +1,15 @@
 package testConfig;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.clearBrowserCookies;
+import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage;
 
 public class BaseTest {
 
@@ -19,7 +18,7 @@ public class BaseTest {
     Configuration.baseUrl = System.getProperty("selenide.baseUrl", "https://staging.papersource.com/");
     Configuration.timeout = 6000;
     RestAssured.baseURI = "https://staging.papersource.com";
-    Configuration.browserSize = "1024x768";
+    Configuration.startMaximized = true;
 
     RestAssured
             .given()
@@ -43,14 +42,9 @@ public class BaseTest {
 
   }
 
-  @BeforeEach
-  public void closeSubscriptionForm(){
-
-  }
-
   @AfterEach
   public void clearBrowserLocalStorageAndCookies() {
-      clearBrowserLocalStorage();
-      clearBrowserCookies();
+    clearBrowserLocalStorage();
+    clearBrowserCookies();
   }
 }
