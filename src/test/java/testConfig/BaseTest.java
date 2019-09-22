@@ -1,6 +1,7 @@
 package testConfig;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -44,7 +45,8 @@ public class BaseTest {
 
   @AfterEach
   public void clearBrowserLocalStorageAndCookies() {
-    clearBrowserLocalStorage();
     clearBrowserCookies();
+    clearBrowserLocalStorage();
+
   }
 }
