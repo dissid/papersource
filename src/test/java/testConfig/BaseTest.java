@@ -1,7 +1,6 @@
 package testConfig;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -20,6 +19,7 @@ public class BaseTest {
     Configuration.timeout = 6000;
     RestAssured.baseURI = "https://staging.papersource.com";
     Configuration.startMaximized = true;
+    Configuration.headless = false;
 
     RestAssured
             .given()
@@ -47,6 +47,5 @@ public class BaseTest {
   public void clearBrowserLocalStorageAndCookies() {
     clearBrowserCookies();
     clearBrowserLocalStorage();
-
   }
 }

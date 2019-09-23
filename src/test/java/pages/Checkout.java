@@ -1,11 +1,28 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
+
 import static com.codeborne.selenide.Selenide.$;
 
-public class CheckoutShipping {
+public class Checkout {
+
+  private PDP pdp = new PDP();
+
+  public Checkout open() {
+    Selenide.open("/checkout/");
+    return this;
+  }
+
+  public Checkout givenOpenedCheckoutShippingWithProducts(String... sku) {
+    for (String item : sku) {
+      pdp.open(item).addToCart();
+    }
+    this.open();
+    return this;
+  }
 
   public void setUserInfo(String email, String firstname, String lastname) {
-    $("#customer-EMAIL").setValue(email);
+    $("#customer-email").setValue(email);
     $("input[name='firstname']").setValue(firstname);
     $("input[name='lastname']").setValue(lastname);
   }

@@ -70,7 +70,7 @@ class OperationsAtOrderTest extends BaseTest {
   }
 
   private void setUserInfo(String email, String firstname, String lastname) {
-    $("#customer-EMAIL").setValue(email);
+    $("#customer-email").setValue(email);
     $("input[name='firstname']").setValue(firstname);
     $("input[name='lastname']").setValue(lastname);
   }

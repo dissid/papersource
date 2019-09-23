@@ -1,6 +1,9 @@
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
 import pages.ShoppingCart;
 import testConfig.BaseTest;
+
+import javax.security.auth.login.Configuration;
 
 public class OperationsAtShoppingCart extends BaseTest {
 
@@ -8,7 +11,7 @@ public class OperationsAtShoppingCart extends BaseTest {
 
   @Test
   void updating() {
-    cart.openShoppingCartWithProducts("/muse-volcano-candle-10007904.html")
+    cart.givenOpenedShoppingCartWithProducts("/muse-volcano-candle-10007904.html")
             .setQty(2)
             .updateCart()
             .assertQty(2)
@@ -18,7 +21,8 @@ public class OperationsAtShoppingCart extends BaseTest {
 
   @Test
   void deleting() {
-    cart.openShoppingCartWithProducts("/playful-puppy-plush-10003557.html", "/canvas-wine-bag-10000015.html")
+    Selenide.clearBrowserCookies();
+    cart.givenOpenedShoppingCartWithProducts("/playful-puppy-plush-10003557.html", "/canvas-wine-bag-10000015.html")
             .delete(1)
             .assertMiniCartSize(1)
             .delete(0)
@@ -27,9 +31,28 @@ public class OperationsAtShoppingCart extends BaseTest {
 
   @Test
   void estimateShippingAndTax() {
-    cart.openShoppingCartWithProducts("/canvas-wine-bag-10000015.html")
+    cart.givenOpenedShoppingCartWithProducts("/canvas-wine-bag-10000015.html")
             .expandEstimateShippingAndTaxBlock()
             .enterDestination("Canada", "Ontario", "M4B 1B3")
-            .assertMethod("International Economy", "$40");
+            .assertDelivery("International Economy", "$40");
+  }
+
+  @Test
+  void applyDiscountCode() {
+    cart.givenOpenedShoppingCartWithSubscriptionProduct("/paper-source-subscription-box-10008860.html")
+            .expandDiscountBlock()
+            .apply("gorilla007")
+            .assertOrderSummaryDiscount("-$1.00")
+            .assertSubtotalAndOrderTotal("$49.95", "$48.95");
+  }
+
+  @Test
+  void removeDiscountCode() {
+    cart.givenOpenedShoppingCartWithDiscountCodeForSubscriptionProduct("gorilla007",
+            "/paper-source-subscription-box-10008860.html")
+            .expandDiscountBlock()
+            .remove()
+            .assertSubtotalAndOrderTotal("$49.95", "$49.95");
+
   }
 }
