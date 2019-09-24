@@ -3,9 +3,7 @@ import org.junit.jupiter.api.Test;
 import pages.ShoppingCart;
 import testConfig.BaseTest;
 
-import javax.security.auth.login.Configuration;
-
-public class OperationsAtShoppingCart extends BaseTest {
+class OperationsAtShoppingCart extends BaseTest {
 
   private ShoppingCart cart = new ShoppingCart();
 
@@ -21,7 +19,6 @@ public class OperationsAtShoppingCart extends BaseTest {
 
   @Test
   void deleting() {
-    Selenide.clearBrowserCookies();
     cart.givenOpenedShoppingCartWithProducts("/playful-puppy-plush-10003557.html", "/canvas-wine-bag-10000015.html")
             .delete(1)
             .assertMiniCartSize(1)
@@ -39,11 +36,11 @@ public class OperationsAtShoppingCart extends BaseTest {
 
   @Test
   void applyDiscountCode() {
-    cart.givenOpenedShoppingCartWithSubscriptionProduct("/paper-source-subscription-box-10008860.html")
+    cart.givenOpenedShoppingCartWithProducts("/woodland-babe-bunny-520172.html")
             .expandDiscountBlock()
             .apply("gorilla007")
             .assertOrderSummaryDiscount("-$1.00")
-            .assertSubtotalAndOrderTotal("$49.95", "$48.95");
+            .assertSubtotalAndOrderTotal("$25.95", "$24.95");
   }
 
   @Test
@@ -53,6 +50,5 @@ public class OperationsAtShoppingCart extends BaseTest {
             .expandDiscountBlock()
             .remove()
             .assertSubtotalAndOrderTotal("$49.95", "$49.95");
-
   }
 }

@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 class OperationsAtOrderTest extends BaseTest {
+
   @Test
   void placingOrderByGuest() {
     open("/");
@@ -125,7 +126,7 @@ class OperationsAtOrderTest extends BaseTest {
   }
 
   private void openNewArrivals() {
-    $("a[href*='collections/new']").click();
+    $("a[href*='collections/new']").shouldBe(visible).click();
   }
 
   private void closeSubscriptionForm(){

@@ -17,6 +17,7 @@ public class ShoppingCart extends Helpers {
 
   public ShoppingCart open() {
     Selenide.open("/checkout/cart/");
+    closeSubscriptionForm();
     return this;
   }
 
@@ -42,7 +43,7 @@ public class ShoppingCart extends Helpers {
   }
 
   public ShoppingCart expandEstimateShippingAndTaxBlock() {
-    $("#block-shipping-heading").click();
+    $("#block-shipping .paper-plus").click();
     return this;
   }
 
@@ -64,7 +65,7 @@ public class ShoppingCart extends Helpers {
   public ShoppingCart enterDestination(String country, String state, String zipCode) {
     $("select[name='country_id']").selectOption(country);
     $("select[name='region_id']").selectOption(state);
-    $("input[name='postcode']").setValue(zipCode).pressEnter();
+    $("input[name='postcode']").setValue(zipCode).click(100,100);
     return this;
   }
 
@@ -100,7 +101,7 @@ public class ShoppingCart extends Helpers {
   }
 
   public ShoppingCart assertMiniCartSize(int value) {
-    $(".counter-number").shouldHave(exactText(Integer.toString(value)));
+    $(".counter-number").shouldBe(visible).shouldHave(exactText(Integer.toString(value)));
     return this;
   }
 

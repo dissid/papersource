@@ -8,5 +8,4 @@ public class Helpers {
     executeJavaScript("if (document.querySelector('.modals-overlay--welcome') !== null)" +
             "document.querySelector('.modals-overlay--welcome').click()");
   }
-
 }

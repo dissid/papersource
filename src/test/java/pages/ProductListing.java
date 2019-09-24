@@ -43,8 +43,8 @@ public class ProductListing extends Helpers {
   }
 
   public ProductListing selectPerPage(int quantity) {
-    toolBar.findBy(cssClass("control")).click();
-    $("a[rel='" + quantity + "']").click();
+    executeJavaScript("document.querySelector(\"select[data-role='limiter']\").style.display = 'block'");
+    toolBar.findBy(cssClass("control")).find(".limiter-options").selectOptionByValue(Integer.toString(quantity));
     return this;
   }
 

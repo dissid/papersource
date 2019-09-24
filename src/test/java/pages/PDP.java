@@ -17,7 +17,7 @@ public class PDP extends Helpers {
   }
 
   public PDP addToCart() {
-    $("#product-addtocart-button").click();
+    $("#product-addtocart-button").shouldBe(visible).click();
     waitUntilProductAddedToCart();
     return this;
   }
@@ -30,8 +30,8 @@ public class PDP extends Helpers {
   }
 
   public PDP selectQuantity(int value) {
-    $($(".qty .control")).click();
-    $("a[rel='" + value + "']").click();
+    executeJavaScript("document.querySelector('.qtyTierPrice').style.display = 'block'");
+    $(".qtyTierPrice").shouldBe(visible).selectOptionByValue(Integer.toString(value));
     return this;
   }
 
@@ -47,7 +47,7 @@ public class PDP extends Helpers {
 
   public PDP selectCoordinateItems(String... items) {
     for (String item : items) {
-      $$(".suite-items label").findBy(exactText(item)).scrollIntoView(false).click();
+      $$(".suite-items label").findBy(exactText(item)).shouldBe(visible).click();
     }
     return this;
   }
@@ -59,7 +59,6 @@ public class PDP extends Helpers {
 
   public PDP next() {
     $(".gspinner").shouldBe(disappear);
-    $(".cke_combo_button").shouldBe(visible);
     $(".gartner-btn.hide.btn-next").waitUntil(visible, 8000).click();
     return this;
   }
@@ -83,7 +82,7 @@ public class PDP extends Helpers {
   }
 
   public PDP skipStep() {
-    $(".suite-skip__link").scrollIntoView(false).click();
+    $(".suite-skip__link").shouldBe(visible).click();
     return this;
   }
 
