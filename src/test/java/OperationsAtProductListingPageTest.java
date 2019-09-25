@@ -31,5 +31,4 @@ class OperationsAtProductListingPageTest extends BaseTest {
             .sortByDescending()
             .assertDescendingPriceFor(0, 1);
   }
-
 }

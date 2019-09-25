@@ -1,8 +1,17 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.empty;
+import static com.codeborne.selenide.Selenide.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.openqa.selenium.By.*;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class Checkout {
 
@@ -21,39 +30,92 @@ public class Checkout {
     return this;
   }
 
-  public void setUserInfo(String email, String firstname, String lastname) {
+  public Checkout setUserInfo(String email, String firstName, String lastName) {
     $("#customer-email").setValue(email);
-    $("input[name='firstname']").setValue(firstname);
-    $("input[name='lastname']").setValue(lastname);
+    $("input[name='firstname']").setValue(firstName);
+    $("input[name='lastname']").setValue(lastName);
+    return this;
   }
 
-  public void setCompany(String name) {
+  public Checkout signIn(String email, String password) {
+    $("#customer-email").setValue(email).pressEnter();
+    $("#customer-password").shouldBe(visible).setValue(password);
+    $("button.login").click();
+    $(".loader").waitUntil(disappear, 10000);
+    return this;
+  }
+
+  public Checkout setCompany(String name) {
     $("input[name='company']").setValue(name);
+    return this;
   }
 
-  public void setStreets(String street1, String street2) {
+  public Checkout setStreets(String street1, String street2) {
     $("input[name='street[0]']").setValue(street1);
     $("input[name='street[1]']").setValue(street2);
+    return this;
   }
 
-  public void setCity(String city) {
+  public Checkout setCity(String city) {
     $("input[name='city']").setValue(city);
+    return this;
   }
 
-  public void selectState(String state) {
+  public Checkout selectState(String state) {
     $("select[name='region_id']").selectOption(state);
+    return this;
   }
 
-  public void setZipCode(int zipCode) {
+  public Checkout setZipCode(int zipCode) {
     $("input[name='postcode']").setValue(Integer.toString(zipCode));
+    return this;
   }
 
-  public void selectCountry(String country) {
+  public Checkout selectCountry(String country) {
     $("select[name='country_id']").selectOption(country);
+    return this;
   }
 
-  public void setPhone(int phone) {
+  public Checkout setPhone(int phone) {
     $("input[name='telephone']").setValue(Integer.toString(phone));
+    return this;
+  }
+
+  public Checkout selectShippingMethod(String shippingMethod) {
+    $$(".table-checkout-shipping-method td").findBy(exactText(shippingMethod)).click();
+    return this;
+  }
+
+  public Checkout openCheckoutPayment() {
+    $("button[data-role='opc-continue']").click();
+    return this;
+  }
+
+  public Checkout setCreditCard(long number, int month, int year, int cvv) {
+    $("input[name='payment[cc_number]']").setValue(Long.toString(number));
+    $("select[name='payment[cc_exp_month]']").selectOptionByValue(Integer.toString(month));
+    $("select[name='payment[cc_exp_year]']").selectOption(Integer.toString(year));
+    $("input[name='payment[cc_cid]']").setValue(Integer.toString(cvv));
+    return this;
+  }
+
+  public Checkout applyDiscount(String code) {
+    $("#discount-code").setValue(code).pressEnter();
+    return this;
+  }
+
+  public Checkout placeOrder() {
+    $("button[data-bind*='placeOrder']").click();
+    return this;
+  }
+
+  public void assertOrderNumberNotEmpty() {
+    assertFalse($(".order-info>strong").getText().isEmpty());
+  }
+
+  public Checkout assertOrderSummaryDiscount(String value) {
+    $(".discount .price").shouldBe(visible).shouldHave(exactText(value));
+    return this;
   }
 }
 

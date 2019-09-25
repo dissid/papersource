@@ -11,8 +11,11 @@ import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.hasWebDriverStarted;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 public class BaseTest {
+
+  protected final static String EMAIL = randomAlphabetic(8) + "@yopmail.com";
 
   @BeforeAll
   public static void setup() {
@@ -20,6 +23,8 @@ public class BaseTest {
     Configuration.timeout = 6000;
     RestAssured.baseURI = "https://staging.papersource.com";
     Configuration.startMaximized = true;
+    Configuration.headless = false;
+    Configuration.fastSetValue = true;
 
     RestAssured
             .given()
@@ -28,9 +33,9 @@ public class BaseTest {
             .filters(new RequestLoggingFilter(), new ResponseLoggingFilter())
             .body("{ \n" +
                     "\"customer\": {\n" +
-                    "\"email\": \"postman@gorillagroup.com\", \n" +
-                    "\"firstname\": \"Test\", \n" +
-                    "\"lastname\": \"Postman\", \n" +
+                    "\"email\": " + "\"" + EMAIL + "\", \n" +
+                    "\"firstname\": \"Automation\", \n" +
+                    "\"lastname\": \"Test\", \n" +
                     "\"website_id\":1, \n" +
                     "\"group_id\":1\n" +
                     "\t\t},\n" +

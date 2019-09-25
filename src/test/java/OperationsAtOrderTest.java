@@ -6,7 +6,6 @@ import static com.codeborne.selenide.Selenide.*;
 
 class OperationsAtOrderTest extends BaseTest {
 
-  @Test
   void placingOrderByGuest() {
     open("/");
 
@@ -33,7 +32,7 @@ class OperationsAtOrderTest extends BaseTest {
     openCheckoutPayment();
 
     setCreditCardNumber(4111111111111111L);
-    setExpiration("12 - December", 2029);
+    setExpiration(12, 2029);
     setCVV(111);
 
     placeOrder();
@@ -52,8 +51,8 @@ class OperationsAtOrderTest extends BaseTest {
     $("input[name='payment[cc_number]']").setValue(Long.toString(number));
   }
 
-  private void setExpiration(String month, int year) {
-    $("select[name='payment[cc_exp_month]']").selectOption(month);
+  private void setExpiration(int month, int year) {
+    $("select[name='payment[cc_exp_month]']").selectOptionByValue(Integer.toString(month));
     $("select[name='payment[cc_exp_year]']").selectOption(Integer.toString(year));
 
   }
@@ -129,7 +128,7 @@ class OperationsAtOrderTest extends BaseTest {
     $("a[href*='collections/new']").shouldBe(visible).click();
   }
 
-  private void closeSubscriptionForm(){
+  private void closeSubscriptionForm() {
     executeJavaScript("if (document.querySelector('.modals-overlay--welcome') !== null)" +
             "document.querySelector('.modals-overlay--welcome').click()");
   }

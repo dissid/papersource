@@ -1,4 +1,3 @@
-import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
 import pages.ShoppingCart;
 import testConfig.BaseTest;
@@ -8,7 +7,7 @@ class OperationsAtShoppingCart extends BaseTest {
   private ShoppingCart cart = new ShoppingCart();
 
   @Test
-  void updating() {
+  void editQuantity() {
     cart.givenOpenedShoppingCartWithProducts("/muse-volcano-candle-10007904.html")
             .setQty(2)
             .updateCart()

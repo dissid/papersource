@@ -64,8 +64,9 @@ public class ShoppingCart extends Helpers {
 
   public ShoppingCart enterDestination(String country, String state, String zipCode) {
     $("select[name='country_id']").selectOption(country);
+    $($("select[name='country_id']")).pressEnter();
     $("select[name='region_id']").selectOption(state);
-    $("input[name='postcode']").setValue(zipCode).click(100,100);
+    $("input[name='postcode']").setValue(zipCode);
     return this;
   }
 

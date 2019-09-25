@@ -1,12 +1,16 @@
 package pages;
 
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import testConfig.Helpers;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static org.openqa.selenium.By.*;
 import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.support.ui.ExpectedConditions.textToBe;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class PDP extends Helpers {
 
@@ -16,8 +20,12 @@ public class PDP extends Helpers {
     return this;
   }
 
+  private SelenideElement image = $(".gpf-editor-frame");
+  private SelenideElement loader = $(".gspinner");
+
   public PDP addToCart() {
-    $("#product-addtocart-button").shouldBe(visible).click();
+    $(".fotorama-item").shouldBe(visible);
+    $("#product-addtocart-button").click();
     waitUntilProductAddedToCart();
     return this;
   }
@@ -31,17 +39,12 @@ public class PDP extends Helpers {
 
   public PDP selectQuantity(int value) {
     executeJavaScript("document.querySelector('.qtyTierPrice').style.display = 'block'");
-    $(".qtyTierPrice").shouldBe(visible).selectOptionByValue(Integer.toString(value));
+    $(".qtyTierPrice").selectOptionByValue(Integer.toString(value));
     return this;
   }
 
   public PDP assertPrice(String value) {
     $(".price-box>.tierPriceSelection").shouldHave(exactText("20 - " + value + " ($2.14 each)"));
-    return this;
-  }
-
-  public PDP assertMiniCartSize(int value) {
-    $(".counter-number").shouldHave(exactText(Integer.toString(value)));
     return this;
   }
 
@@ -58,21 +61,20 @@ public class PDP extends Helpers {
   }
 
   public PDP next() {
-    $(".gspinner").shouldBe(disappear);
-    $(".gartner-btn.hide.btn-next").waitUntil(visible, 8000).click();
+    $("iframe.cke_reset").waitUntil(visible, 7000);
+    $(".gartner-btn.hide.btn-next").click();
     return this;
   }
 
   public PDP nextReviewOrder() {
-    $(".gspinner").shouldBe(disappear);
-    $(".btn-preview").shouldBe(visible).click();
+    loader.shouldBe(disappear);
+    $(".btn-preview").click();
     return this;
   }
 
   public PDP addToBag() {
     $("#reviewed-ok").click();
-    $("g.gpf-stock-image-element").shouldBe(visible);
-    $(".js-add-to-cart").waitUntil(visible, 8000).click();
+    $(".js-add-to-cart").waitUntil(visible, 10000).click();
     return this;
   }
 
@@ -88,6 +90,11 @@ public class PDP extends Helpers {
 
   public PDP assertCompleteMessage(String text) {
     $(".complete__title").shouldHave(exactText(text));
+    return this;
+  }
+
+  public PDP assertMiniCartSize(int value) {
+    $(".counter-number").shouldHave(exactText(Integer.toString(value)));
     return this;
   }
 

@@ -1,15 +1,15 @@
 package pages;
 
+import testConfig.Helpers;
+
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class Registration {
+public class Registration extends Helpers {
 
-  public Registration givenOpenedRegistrationWithClosedSubscriptionForm() {
+  public Registration givenOpenedRegistration() {
     open("/customer/account/create/");
-    executeJavaScript("if (document.querySelector('.modals-overlay--welcome') !== null)" +
-            "document.querySelector('.modals-overlay--welcome').click()");
     return this;
   }
 
@@ -19,6 +19,7 @@ public class Registration {
   }
 
   public Registration setSignInInfo(String email, String password, String confirmPassword) {
+    closeSubscriptionForm();
     $("#email_address").setValue(email);
     $("#password").setValue(password);
     $("#password-confirmation").setValue(confirmPassword);

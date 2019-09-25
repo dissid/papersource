@@ -7,12 +7,11 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class Account extends Helpers {
 
-  public Account givenOpenedMyAccountWithLoggedIn() {
+  public Account givenOpenedMyAccount(String email, String password) {
     open("/customer/account/");
+    $("#email").setValue(email);
     closeSubscriptionForm();
-
-    $("#email").setValue("postman@gorillagroup.com");
-    $("#pass").setValue("Q1w2e3r4");
+    $("#pass").setValue(password);
     $("input[name='persistent_remember_me']").click();
     $("#send2").click();
     return this;
