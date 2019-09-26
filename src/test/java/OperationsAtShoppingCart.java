@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.ShoppingCart;
 import testConfig.BaseTest;
@@ -7,6 +8,8 @@ class OperationsAtShoppingCart extends BaseTest {
   private ShoppingCart cart = new ShoppingCart();
 
   @Test
+  @Tag("stage")
+  @Tag("prod")
   void editQuantity() {
     cart.givenOpenedShoppingCartWithProducts("/muse-volcano-candle-10007904.html")
             .setQty(2)
@@ -17,6 +20,8 @@ class OperationsAtShoppingCart extends BaseTest {
   }
 
   @Test
+  @Tag("stage")
+  @Tag("prod")
   void deleting() {
     cart.givenOpenedShoppingCartWithProducts("/playful-puppy-plush-10003557.html", "/canvas-wine-bag-10000015.html")
             .delete(1)
@@ -26,6 +31,8 @@ class OperationsAtShoppingCart extends BaseTest {
   }
 
   @Test
+  @Tag("stage")
+  @Tag("prod")
   void estimateShippingAndTax() {
     cart.givenOpenedShoppingCartWithProducts("/canvas-wine-bag-10000015.html")
             .expandEstimateShippingAndTaxBlock()
@@ -34,6 +41,7 @@ class OperationsAtShoppingCart extends BaseTest {
   }
 
   @Test
+  @Tag("stage")
   void applyDiscountCode() {
     cart.givenOpenedShoppingCartWithProducts("/woodland-babe-bunny-520172.html")
             .expandDiscountBlock()
@@ -43,6 +51,7 @@ class OperationsAtShoppingCart extends BaseTest {
   }
 
   @Test
+  @Tag("stage")
   void removeDiscountCode() {
     cart.givenOpenedShoppingCartWithDiscountCodeForSubscriptionProduct("gorilla007",
             "/paper-source-subscription-box-10008860.html")

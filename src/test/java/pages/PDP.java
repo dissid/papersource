@@ -61,7 +61,7 @@ public class PDP extends Helpers {
   }
 
   public PDP next() {
-    $("iframe.cke_reset").waitUntil(visible, 7000);
+    $("iframe.cke_reset").waitUntil(visible, 10000);
     $(".gartner-btn.hide.btn-next").click();
     return this;
   }

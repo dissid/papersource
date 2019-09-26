@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.Account;
 import pages.Registration;
@@ -14,6 +15,8 @@ class OperationsAtAccountTest extends BaseTest {
 
 
   @Test
+  @Tag("stage")
+  @Tag("prod")
   void registration() {
     String email = randomAlphabetic(8) + "@yopmail.com";
     registration
@@ -27,6 +30,8 @@ class OperationsAtAccountTest extends BaseTest {
   }
 
   @Test
+  @Tag("stage")
+  @Tag("prod")
   void editing() {
     account.givenOpenedMyAccount(EMAIL, "Q1w2e3r4")
             .activeEditing()

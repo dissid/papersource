@@ -1,21 +1,17 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Condition.empty;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.openqa.selenium.By.*;
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class Checkout {
 
   private PDP pdp = new PDP();
+  private SelenideElement orderNumber = $(".order-info>strong");
 
   public Checkout open() {
     Selenide.open("/checkout/");
@@ -38,8 +34,8 @@ public class Checkout {
   }
 
   public Checkout signIn(String email, String password) {
-    $("#customer-email").setValue(email).pressEnter();
-    $("#customer-password").shouldBe(visible).setValue(password);
+    $("#customer-email").setValue(email).click(100, 100);
+    $("#customer-password").waitUntil(visible, 8000).setValue(password);
     $("button.login").click();
     $(".loader").waitUntil(disappear, 10000);
     return this;
@@ -110,7 +106,9 @@ public class Checkout {
   }
 
   public void assertOrderNumberNotEmpty() {
-    assertFalse($(".order-info>strong").getText().isEmpty());
+    orderNumber.shouldBe(visible);
+    assertEquals(orderNumber.getText()
+            .substring(orderNumber.getText().length() - 12, orderNumber.getText().length() - 1).length(), 11);
   }
 
   public Checkout assertOrderSummaryDiscount(String value) {

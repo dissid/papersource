@@ -31,7 +31,7 @@ public class MiniCart {
 
   public MiniCart delete() {
     $(".paper-trash").click();
-    $(".action-accept").shouldBe(visible).click();
+    $(".action-accept").waitUntil(visible, 8000).click();
     return this;
   }
 

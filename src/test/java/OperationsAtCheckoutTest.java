@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.Checkout;
 import testConfig.BaseTest;
@@ -7,6 +8,7 @@ class OperationsAtCheckoutTest extends BaseTest {
   private Checkout checkout = new Checkout();
 
   @Test
+  @Tag("stage")
   void placingOrderWithDiscountByGuest() {
     checkout.givenOpenedCheckoutShippingWithProducts("/sunset-tote-bag-10007616.html")
 
@@ -28,6 +30,7 @@ class OperationsAtCheckoutTest extends BaseTest {
   }
 
   @Test
+  @Tag("stage")
   void placingOrderByLoggedIn() {
     checkout.givenOpenedCheckoutShippingWithProducts("/travel-diffuser-with-oil-10007666.html")
 

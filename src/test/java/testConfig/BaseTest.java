@@ -10,12 +10,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.clearBrowserCookies;
+import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage;
 import static com.codeborne.selenide.WebDriverRunner.hasWebDriverStarted;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 public class BaseTest {
 
   protected final static String EMAIL = randomAlphabetic(8) + "@yopmail.com";
+  private static String userID = "";
 
   @BeforeAll
   public static void setup() {
@@ -23,7 +26,6 @@ public class BaseTest {
     Configuration.timeout = 6000;
     RestAssured.baseURI = "https://staging.papersource.com";
     Configuration.startMaximized = true;
-    Configuration.headless = false;
     Configuration.fastSetValue = true;
 
     RestAssured
@@ -51,7 +53,7 @@ public class BaseTest {
   public void clearBrowserLocalStorageAndCookies() {
     if (hasWebDriverStarted()) {
       clearBrowserLocalStorage();
-      Selenide.sleep(500);
+      sleep(600);
       clearBrowserCookies();
     }
   }

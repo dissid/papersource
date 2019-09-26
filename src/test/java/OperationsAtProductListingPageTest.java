@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.ProductListing;
 import testConfig.BaseTest;
@@ -7,6 +8,8 @@ class OperationsAtProductListingPageTest extends BaseTest {
   private ProductListing productListing = new ProductListing();
 
   @Test
+  @Tag("stage")
+  @Tag("prod")
   void changingProductsPerPage() {
     productListing
             .givenOpenedCollectionsSale()
@@ -15,6 +18,8 @@ class OperationsAtProductListingPageTest extends BaseTest {
   }
 
   @Test
+  @Tag("stage")
+  @Tag("prod")
   void selectingFilter() {
     productListing
             .givenOpenedGiftHomeDrinkware()
@@ -24,6 +29,8 @@ class OperationsAtProductListingPageTest extends BaseTest {
   }
 
   @Test
+  @Tag("stage")
+  @Tag("prod")
   void selectingSortByPrice() {
     productListing
             .givenOpenedStationerySetsWithSortedByPrice()
