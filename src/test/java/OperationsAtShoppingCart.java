@@ -36,8 +36,8 @@ class OperationsAtShoppingCart extends BaseTest {
   void estimateShippingAndTax() {
     cart.givenOpenedShoppingCartWithProducts("/canvas-wine-bag-10000015.html")
             .expandEstimateShippingAndTaxBlock()
-            .enterDestination("Canada", "Ontario", "M4B 1B3")
-            .assertDelivery("International Economy", "$40");
+            .enterDestination("United States", "Illinois", "60604")
+            .assertDelivery("Next Day", "$29.95");
   }
 
   @Test
@@ -46,8 +46,7 @@ class OperationsAtShoppingCart extends BaseTest {
     cart.givenOpenedShoppingCartWithProducts("/woodland-babe-bunny-520172.html")
             .expandDiscountBlock()
             .apply("gorilla007")
-            .assertOrderSummaryDiscount("-$1.00")
-            .assertSubtotalAndOrderTotal("$25.95", "$24.95");
+            .assertOrderSummaryDiscount("-$1.00");
   }
 
   @Test

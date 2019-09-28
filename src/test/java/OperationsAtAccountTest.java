@@ -24,7 +24,8 @@ class OperationsAtAccountTest extends BaseTest {
             .setPersonalInfo("Smoke", "Automation")
             .setSignInInfo(email, "Q1w2e3r4", "Q1w2e3r4")
             .create()
-            .assertRedirectionTo("/customer/account/");
+            .assertRedirectionTo("/customer/account/")
+            .logout();
     yopMail.open(email)
             .assertGreeting("Welcome to Paper Source.");
   }
@@ -37,7 +38,8 @@ class OperationsAtAccountTest extends BaseTest {
             .activeEditing()
             .edit("Smoke Edited", "Automation Edited")
             .submit()
-            .assertAccountInfo("Smoke Edited", "Automation Edited", EMAIL);
+            .assertAccountInfo("Smoke Edited", "Automation Edited", EMAIL)
+            .logout();
   }
 
 
