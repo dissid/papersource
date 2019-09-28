@@ -26,7 +26,11 @@ class OperationsAtAccountTest extends BaseTest {
             .create()
             .assertRedirectionTo("/customer/account/")
             .logout();
-    yopMail.open(email)
+  }
+
+  @Test
+  void email() {
+    yopMail.open(EMAIL)
             .assertGreeting("Welcome to Paper Source.");
   }
 
