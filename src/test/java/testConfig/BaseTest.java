@@ -22,7 +22,7 @@ public class BaseTest {
   @BeforeAll
   public static void setup() {
     Configuration.baseUrl = System.getProperty("selenide.baseUrl", "https://staging.papersource.com/");
-    Configuration.timeout = 6000;
+    Configuration.timeout = 10000;
     RestAssured.baseURI = "https://staging.papersource.com";
     Configuration.startMaximized = true;
     Configuration.fastSetValue = true;
@@ -52,7 +52,6 @@ public class BaseTest {
   @BeforeEach
   public void clearBrowserLocalStorageAndCookies() {
     if (hasWebDriverStarted()) {
-      WebDriverRunner.clearBrowserCache();
       clearBrowserLocalStorage();
       clearBrowserCookies();
       executeJavaScript("location.reload()");

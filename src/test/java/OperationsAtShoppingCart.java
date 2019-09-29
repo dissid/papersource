@@ -37,7 +37,7 @@ class OperationsAtShoppingCart extends BaseTest {
     cart.givenOpenedShoppingCartWithProducts("/canvas-wine-bag-10000015.html")
             .expandEstimateShippingAndTaxBlock()
             .enterDestination("United States", "Illinois", "60604")
-            .assertDelivery("Next Day", "$29.95");
+            .assertDelivery("2nd Day", "$19.95");
   }
 
   @Test

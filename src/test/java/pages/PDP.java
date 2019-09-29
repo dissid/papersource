@@ -53,7 +53,7 @@ public class PDP extends Helpers {
   @Step
   public PDP selectCoordinateItems(String... items) {
     for (String item : items) {
-      $$(".suite-items label").findBy(exactText(item)).shouldBe(visible).click();
+      $$(".suite-items label").findBy(exactText(item)).waitUntil(visible, 15000).click();
     }
     return this;
   }
@@ -82,7 +82,7 @@ public class PDP extends Helpers {
   @Step
   public PDP addToBag() {
     $("#reviewed-ok").click();
-    $(".js-add-to-cart").waitUntil(visible, 10000).click();
+    $(".js-add-to-cart").waitUntil(visible, 15000).click();
     return this;
   }
 

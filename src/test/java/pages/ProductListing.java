@@ -19,6 +19,7 @@ public class ProductListing extends Helpers {
   public ProductListing givenOpenedCollectionsSale() {
     open("/collections/sale");
     closeSubscriptionForm();
+    closeSubscriptionForm();
     return this;
   }
 
@@ -81,6 +82,7 @@ public class ProductListing extends Helpers {
 
   @Step
   private double getPriceFor(int productIndex) {
+    closeSubscriptionForm();
     String price = productGrid.get(productIndex).find(".price").shouldHave(visible).getText();
     return parseDouble(price.replace("$", ""));
   }

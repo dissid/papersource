@@ -5,7 +5,6 @@ public class OperationsAtSearchTest {
 
   private Home home = new Home();
 
-  @Test
   void searchBySKU() {
     home.open()
             .openSearching()

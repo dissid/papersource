@@ -20,32 +20,32 @@ public class Account extends Helpers {
     return this;
   }
 
-  @Step
+  @Step("Click <Edit> link")
   public Account activeEditing() {
     $(".block-dashboard-info .edit").click();
     return this;
   }
 
-  @Step
+  @Step("Editing first name - {firstName} and last name - {lastName}")
   public Account edit(String firstName, String lastName) {
     $("#firstname").setValue(firstName);
     $("#lastname").setValue(lastName);
     return this;
   }
 
-  @Step
+  @Step("Click <Submit> button")
   public Account submit() {
     $(".form-edit-account button[type='submit']").click();
     return this;
   }
 
-  @Step
+  @Step("Click <Logout> link")
   public void logout() {
     $(".page-header .customer-welcome-link").click();
     $(".page-header a[href*='logout']").click();
   }
 
-  @Step
+  @Step("Assert first name - {firstName} last name - {lastName} email - {email}")
   public Account assertAccountInfo(String firstName, String lastName, String email) {
     $$(".box-information .box-content").shouldHave(exactTexts(firstName + " " + lastName + " " + email));
     return this;

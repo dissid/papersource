@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import pages.ProductListing;
 import testConfig.BaseTest;
 
-class OperationsAtProductListingPageTest extends BaseTest {
+class OperationsAtPLPTest extends BaseTest {
 
   private ProductListing productListing = new ProductListing();
 
