@@ -1,6 +1,7 @@
 package testConfig;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.hasWebDriverStarted;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.openqa.selenium.support.ui.ExpectedConditions.jsReturnsValue;
 
 public class BaseTest {
 
@@ -52,9 +54,11 @@ public class BaseTest {
   @BeforeEach
   public void clearBrowserLocalStorageAndCookies() {
     if (hasWebDriverStarted()) {
+      clearBrowserCookies();
+      clearBrowserLocalStorage();
+      refresh();
       clearBrowserLocalStorage();
       clearBrowserCookies();
-      executeJavaScript("location.reload()");
     }
   }
 }

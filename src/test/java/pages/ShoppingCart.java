@@ -1,20 +1,18 @@
 package pages;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import testConfig.Helpers;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
+import static org.openqa.selenium.support.ui.ExpectedConditions.jsReturnsValue;
 
 public class ShoppingCart extends Helpers {
 
   private PDP pdp = new PDP();
   private SelenideElement qty = $("input[data-role='cart-item-qty']");
-  private ElementsCollection shoppingCart = $$("#shopping-cart-table .cart.item");
 
   @Step("Open Shopping Cart page")
   public ShoppingCart open() {
@@ -66,12 +64,12 @@ public class ShoppingCart extends Helpers {
 
   @Step("Delete product by index - {index}")
   public ShoppingCart delete(int index) {
-    shoppingCart.get(index).find(".action-delete").click();
+    $$(".action-delete").get(index).click();
     return this;
   }
 
   @Step("Entering destination country - {country} state - {state} zipCode - {zipCode}")
-  public ShoppingCart enterDestination(String country, String state, String zipCode) {
+  public ShoppingCart estimateFor(String country, String state, String zipCode) {
     $("select[name='country_id']").selectOption(country);
     $("select[name='region_id']").selectOption(state);
     $("input[name='postcode']").sendKeys(zipCode);
@@ -117,7 +115,8 @@ public class ShoppingCart extends Helpers {
 
   @Step("Assert size - {value} in Mini Cart")
   public ShoppingCart assertMiniCartSize(int value) {
-    $(".counter-number").waitUntil(visible, 15000).shouldHave(exactText(Integer.toString(value)));
+    Wait().until(jsReturnsValue("return document.readyState === 'complete'"));
+    $(".counter-number").shouldHave(exactText(Integer.toString(value)));
     return this;
   }
 

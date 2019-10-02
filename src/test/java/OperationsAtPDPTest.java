@@ -21,7 +21,7 @@ class OperationsAtPDPTest extends BaseTest {
   @Tag("prod")
   void addingSuiteProductToCart() {
     pdp.open("/sonora-response-card-w783-182781202202.html")
-            .selectCoordinateItems("Invitation")
+            .selectCoordinateItem("Invitation")
             .personalize()
             .next()
             .nextReviewOrder()

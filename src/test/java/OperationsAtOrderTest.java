@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 class OperationsAtOrderTest extends BaseTest {
 
+  @Test
   void placingOrderByGuest() {
     open("/");
 
@@ -38,6 +39,7 @@ class OperationsAtOrderTest extends BaseTest {
     placeOrder();
     assertOrderNumberNotEmpty();
   }
+
 
   private void assertOrderNumberNotEmpty() {
     $(".order-info span").shouldBe(not(empty));

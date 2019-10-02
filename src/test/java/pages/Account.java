@@ -2,27 +2,33 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
+import pages.widgets.CustomerMenu;
 import testConfig.Helpers;
 
-import static com.codeborne.selenide.CollectionCondition.exactTexts;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Selenide.$;
 
 public class Account extends Helpers {
 
+  @Step("Open My Account page")
+  public Account open(){
+    Selenide.open("/customer/account/");
+    return this;
+  }
+
   @Step("Login by {email} - {password}")
   public Account givenOpenedMyAccount(String email, String password) {
-    open("/customer/account/");
-    $("#email").setValue(email);
+    open();
     closeSubscriptionForm();
+    $("#email").setValue(email);
     $("#pass").setValue(password);
-    $("input[name='persistent_remember_me']").click();
     $("#send2").click();
     return this;
   }
 
   @Step("Click <Edit> link")
   public Account activeEditing() {
-    $(".block-dashboard-info .edit").click();
+    $(".block-dashboard-info").parent().find(".edit").click();
     return this;
   }
 
@@ -35,19 +41,14 @@ public class Account extends Helpers {
 
   @Step("Click <Submit> button")
   public Account submit() {
-    $(".form-edit-account button[type='submit']").click();
+    $(".form-edit-account").parent().find("button[type='submit']").click();
     return this;
   }
 
-  @Step("Click <Logout> link")
-  public void logout() {
-    $(".page-header .customer-welcome-link").click();
-    $(".page-header a[href*='logout']").click();
-  }
-
   @Step("Assert first name - {firstName} last name - {lastName} email - {email}")
-  public Account assertAccountInfo(String firstName, String lastName, String email) {
-    $$(".box-information .box-content").shouldHave(exactTexts(firstName + " " + lastName + " " + email));
+  public Account assertAccount(String firstName, String lastName, String email) {
+    $(".box-information").parent().find(".box-content")
+            .shouldHave(exactText(firstName + " " + lastName + " " + email));
     return this;
   }
 }

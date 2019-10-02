@@ -11,7 +11,7 @@ class OperationsAtMiniCart extends BaseTest {
   @Tag("stage")
   @Tag("prod")
   void editingQuantity() {
-    miniCart.givenOpenedMiniCartWithProducts("/flourishing-roses-wreath-kit-10007825.html")
+    miniCart.givenOpenedMiniCartWithProduct("/flourishing-roses-wreath-kit-10007825.html")
             .setQty(2)
             .assertCountTotal(2);
   }
@@ -20,8 +20,9 @@ class OperationsAtMiniCart extends BaseTest {
   @Tag("stage")
   @Tag("prod")
   void deleting() {
-    miniCart.givenOpenedMiniCartWithProducts("/wine-and-naps-pouch-10007635.html")
+    miniCart.givenOpenedMiniCartWithProduct("/wine-and-naps-pouch-10007635.html")
             .delete()
+            .confirmDeletion()
             .assertMessage("You have no items in your shopping cart.");
   }
 }

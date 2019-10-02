@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
+import pages.widgets.CustomerMenu;
 import testConfig.Helpers;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -38,7 +39,7 @@ public class Registration extends Helpers {
     return this;
   }
 
-  @Step
+  @Step("Click Logout link")
   public void logout() {
     $(".page-header .customer-welcome-link").click();
     $(".page-header a[href*='logout']").click();
@@ -49,5 +50,4 @@ public class Registration extends Helpers {
     assertTrue(url().contains(path));
     return this;
   }
-
 }

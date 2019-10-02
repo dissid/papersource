@@ -4,44 +4,54 @@ import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.Wait;
+import static org.openqa.selenium.support.ui.ExpectedConditions.jsReturnsValue;
 
 public class MiniCart {
 
   private PDP pdp = new PDP();
 
-  private MiniCart show() {
+  private MiniCart open() {
     $("a.showcart").click();
     return this;
   }
-  @Step
-  public MiniCart givenOpenedMiniCartWithProducts(String... paths) {
-    for (String path : paths) {
-      pdp.open(path).addToCart();
-    }
-    show();
+
+  @Step("Open mini cart with product - {paths}")
+  public MiniCart givenOpenedMiniCartWithProduct(String path) {
+    pdp.open(path).addToCart();
+    this.open();
     return this;
   }
-  @Step
+
+  @Step("Set quantity - {qty}")
   public MiniCart setQty(int qty) {
     $(".details-qty input").setValue(Integer.toString(qty));
     $(".update-cart-item").click();
     return this;
   }
-  @Step
+
+  @Step("Delete product")
   public MiniCart delete() {
     $(".paper-trash").click();
-    $(".action-accept").waitUntil(visible, 8000).click();
     return this;
   }
+
   @Step
+  public MiniCart confirmDeletion() {
+    Wait().until(jsReturnsValue("return document.readyState === 'complete'"));
+    $(".action-accept").click();
+    return this;
+  }
+
+  @Step("Assert mini cart total - {count}")
   public void assertCountTotal(int count) {
     $(".items-total>.count").shouldHave(Condition.exactText(Integer.toString(count)));
   }
-  @Step
+
+  @Step("Assert message - {text}")
   public void assertMessage(String text) {
-    $(".block-content>.empty").shouldBe(visible).shouldHave(exactText(text));
+    $(".block-content>.empty").shouldHave(exactText(text));
   }
 
 }
