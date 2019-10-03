@@ -1,19 +1,24 @@
-package pages;
+package pages.widgets;
 
-import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import pages.PDP;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.Wait;
-import static org.openqa.selenium.support.ui.ExpectedConditions.jsReturnsValue;
 
 public class MiniCart {
 
   private PDP pdp = new PDP();
+  private SelenideElement container;
 
+  public MiniCart(SelenideElement container) {
+    this.container = container;
+  }
+
+  @Step("Open Mini Cart")
   private MiniCart open() {
-    $("a.showcart").click();
+    container.click();
     return this;
   }
 
@@ -26,32 +31,30 @@ public class MiniCart {
 
   @Step("Set quantity - {qty}")
   public MiniCart setQty(int qty) {
-    $(".details-qty input").setValue(Integer.toString(qty));
-    $(".update-cart-item").click();
+    container.find(".item-qty").setValue(Integer.toString(qty));
+    container.find(".update-cart-item").click();
     return this;
   }
 
   @Step("Delete product")
   public MiniCart delete() {
-    $(".paper-trash").click();
+    container.find(".paper-trash").click();
     return this;
   }
 
   @Step
-  public MiniCart confirmDeletion() {
-    Wait().until(jsReturnsValue("return document.readyState === 'complete'"));
-    $(".action-accept").click();
-    return this;
+  public Modal modal() {
+    return new Modal($(".modals-wrapper"));
   }
 
   @Step("Assert mini cart total - {count}")
   public void assertCountTotal(int count) {
-    $(".items-total>.count").shouldHave(Condition.exactText(Integer.toString(count)));
+    container.find(".count").shouldHave(exactText(Integer.toString(count)));
   }
 
   @Step("Assert message - {text}")
   public void assertMessage(String text) {
-    $(".block-content>.empty").shouldHave(exactText(text));
+    container.find(".block-content").shouldHave(exactText(text));
   }
 
 }

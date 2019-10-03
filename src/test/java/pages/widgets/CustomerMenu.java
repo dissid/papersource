@@ -7,7 +7,7 @@ public class CustomerMenu {
 
   private SelenideElement menu;
 
-  CustomerMenu(SelenideElement menu) {
+  public CustomerMenu(SelenideElement menu) {
     this.menu = menu;
   }
 

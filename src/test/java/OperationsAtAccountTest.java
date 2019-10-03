@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import pages.Account;
 import pages.Registration;
 import pages.YopMail;
-import pages.widgets.Header;
+import pages.Header;
 import testConfig.BaseTest;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
