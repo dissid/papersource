@@ -39,12 +39,9 @@ public class MiniCart {
   @Step("Delete product")
   public MiniCart delete() {
     container.find(".paper-trash").click();
-    return this;
-  }
 
-  @Step
-  public Modal modal() {
-    return new Modal($(".modals-wrapper"));
+    new ConfirmationDialog().confirm();
+    return this;
   }
 
   @Step("Assert mini cart total - {count}")

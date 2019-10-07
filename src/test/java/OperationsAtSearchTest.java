@@ -16,8 +16,8 @@ class OperationsAtSearchTest extends BaseTest {
   void searchBySKU() {
     home.open()
             .activateSearching()
-            .search("10007616");
-    pdp.assertSKU(10007616);
+            .search("10007667");
+    pdp.assertSKU(10007667);
   }
 
   @Test

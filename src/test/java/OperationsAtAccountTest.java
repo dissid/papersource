@@ -1,3 +1,4 @@
+import io.qameta.allure.Description;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -20,12 +21,13 @@ class OperationsAtAccountTest extends BaseTest {
   @Test
   @Tag("stage")
   @Tag("prod")
+  @Description("Test Description: Login test with wrong username and wrong password.")
   void registration() {
     String email = randomAlphabetic(8) + "@yopmail.com";
 
     registration.givenOpenedRegistration()
-            .setPersonalInfo("Smoke", "Automation")
-            .setSignInInfo(email, "Q1w2e3r4", "Q1w2e3r4")
+            .setPersonal("Smoke", "Automation")
+            .setSignIn(email, "Q1w2e3r4", "Q1w2e3r4")
             .create()
             .assertRedirectionTo("/customer/account/");
 

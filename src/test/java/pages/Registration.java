@@ -23,8 +23,8 @@ public class Registration extends Helpers {
     return this;
   }
 
-  @Step("Set sign info: Email - {email}, Pass - {password}, Confirm Pass - {confirmPassword}")
-  public Registration setSignInInfo(String email, String password, String confirmPassword) {
+  @Step("Set sign info: Email - {email} Pass - {password} Confirm Pass - {confirmPassword}")
+  public Registration setSignIn(String email, String password, String confirmPassword) {
     closeSubscriptionForm();
     $("#email_address").setValue(email);
     $("#password").setValue(password);
@@ -32,17 +32,11 @@ public class Registration extends Helpers {
     return this;
   }
 
-  @Step("Set personal info: {fistName}, {lastName}")
-  public Registration setPersonalInfo(String firstName, String lastName) {
+  @Step("Set personal info: Name - {firstName} Last Name - {lastName}")
+  public Registration setPersonal(String firstName, String lastName) {
     $("#firstname").setValue(firstName);
     $("#lastname").setValue(lastName);
     return this;
-  }
-
-  @Step("Click Logout link")
-  public void logout() {
-    $(".page-header .customer-welcome-link").click();
-    $(".page-header a[href*='logout']").click();
   }
 
   @Step("Assert redirection to My Account page")

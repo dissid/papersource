@@ -1,16 +1,18 @@
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import pages.Checkout;
+import pages.CheckoutPayment;
+import pages.CheckoutShipping;
+import pages.Success;
 import testConfig.BaseTest;
 
 class OperationsAtCheckoutTest extends BaseTest {
 
-  private Checkout checkout = new Checkout();
+  private CheckoutShipping checkoutShipping = new CheckoutShipping();
 
   @Test
   @Tag("stage")
   void placingOrderWithDiscountByGuest() {
-    checkout.givenOpenedCheckoutShippingWithProducts("/sunset-tote-bag-10007616.html")
+    checkoutShipping.givenOpenedCheckoutShippingWithProducts("/sunset-tote-bag-10007616.html")
 
             .setUserInfo(EMAIL, "Automation", "Test")
             .setStreets("111 W Jackson Blvd Fl 3", "")
@@ -20,19 +22,20 @@ class OperationsAtCheckoutTest extends BaseTest {
             .selectCountry("United States")
             .setPhone(1234567890)
             .selectShippingMethod("2nd Day")
-            .openCheckoutPayment()
+            .next()
 
             .setCreditCard(5555444433331111L, 12, 2029, 111)
             .applyDiscount("gorilla007")
             .assertOrderSummaryDiscount("-$1.00")
             .placeOrder()
+
             .assertOrderNumberNotEmpty();
   }
 
   @Test
   @Tag("stage")
   void placingOrderByLoggedIn() {
-    checkout.givenOpenedCheckoutShippingWithProducts("/travel-diffuser-with-oil-10007666.html")
+    checkoutShipping.givenOpenedCheckoutShippingWithProducts("/travel-diffuser-with-oil-10007666.html")
 
             .signIn(EMAIL, "Q1w2e3r4")
             .setStreets("111 W Jackson", "222 W Jackson")
@@ -43,9 +46,10 @@ class OperationsAtCheckoutTest extends BaseTest {
             .selectCountry("United States")
             .setPhone(1234567890)
             .selectShippingMethod("Ground (1-5 business days)")
-            .openCheckoutPayment()
+            .next()
 
             .setCreditCard(4111111111111111L, 12, 2029, 111)
+
             .placeOrder()
             .assertOrderNumberNotEmpty();
   }

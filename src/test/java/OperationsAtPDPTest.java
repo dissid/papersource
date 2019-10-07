@@ -23,10 +23,12 @@ class OperationsAtPDPTest extends BaseTest {
     pdp.open("/sonora-response-card-w783-182781202202.html")
             .selectCoordinateItem("Invitation")
             .personalize()
+
             .next()
             .nextReviewOrder()
             .addToBag()
             .continueToPDP()
+
             .skipStep()
             .assertCompleteMessage("Congratulations! Your project is complete.")
             .assertMiniCartSize(200);

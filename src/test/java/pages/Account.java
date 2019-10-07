@@ -2,7 +2,6 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
-import pages.widgets.CustomerMenu;
 import testConfig.Helpers;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -28,7 +27,7 @@ public class Account extends Helpers {
 
   @Step("Click <Edit> link")
   public Account activeEditing() {
-    $(".block-dashboard-info").parent().find(".edit").click();
+    $(".block-dashboard-info").find(".edit").click();
     return this;
   }
 
@@ -41,13 +40,13 @@ public class Account extends Helpers {
 
   @Step("Click <Submit> button")
   public Account submit() {
-    $(".form-edit-account").parent().find("button[type='submit']").click();
+    $(".form-edit-account").find("[type='submit']").click();
     return this;
   }
 
   @Step("Assert first name - {firstName} last name - {lastName} email - {email}")
   public Account assertAccount(String firstName, String lastName, String email) {
-    $(".box-information").parent().find(".box-content")
+    $(".box-information").find(".box-content")
             .shouldHave(exactText(firstName + " " + lastName + " " + email));
     return this;
   }

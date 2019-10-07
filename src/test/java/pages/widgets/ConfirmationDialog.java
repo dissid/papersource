@@ -3,13 +3,11 @@ package pages.widgets;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
-public class Modal {
+import static com.codeborne.selenide.Selenide.$;
 
-  private SelenideElement container;
+public class ConfirmationDialog {
 
-  Modal(SelenideElement container) {
-    this.container = container;
-  }
+  private SelenideElement container = $(".modals-wrapper");
 
   @Step("Confirm deleting")
   public void confirm() {

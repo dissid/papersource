@@ -50,12 +50,12 @@ class OperationsAtOrderTest extends BaseTest {
   }
 
   private void setCreditCardNumber(long number) {
-    $("input[name='payment[cc_number]']").setValue(Long.toString(number));
+    $("[name*='[cc_number]']").setValue(Long.toString(number));
   }
 
   private void setExpiration(int month, int year) {
-    $("select[name='payment[cc_exp_month]']").selectOptionByValue(Integer.toString(month));
-    $("select[name='payment[cc_exp_year]']").selectOption(Integer.toString(year));
+    $("[name*='[cc_exp_month]']").selectOptionByValue(Integer.toString(month));
+    $("[name*='[cc_exp_year]']").selectOption(Integer.toString(year));
 
   }
 

@@ -22,7 +22,6 @@ class OperationsAtMiniCart extends BaseTest {
   void deleting() {
     header.miniCart().givenOpenedMiniCartWithProduct("/wine-and-naps-pouch-10007635.html")
             .delete()
-            .modal().confirm();
-    header.miniCart().assertMessage("You have no items in your shopping cart.");
+            .assertMessage("You have no items in your shopping cart.");
   }
 }
