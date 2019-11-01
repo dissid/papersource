@@ -4,13 +4,13 @@ import pages.CheckoutPayment;
 import pages.CheckoutShipping;
 import pages.Success;
 import testConfig.BaseTest;
+import testConfig.tags.Stage;
 
 class OperationsAtCheckoutTest extends BaseTest {
 
   private CheckoutShipping checkoutShipping = new CheckoutShipping();
 
-  @Test
-  @Tag("stage")
+  @Stage
   void placingOrderWithDiscountByGuest() {
     checkoutShipping.givenOpenedCheckoutShippingWithProducts("/sunset-tote-bag-10007616.html")
 
@@ -32,8 +32,7 @@ class OperationsAtCheckoutTest extends BaseTest {
             .assertOrderNumberNotEmpty();
   }
 
-  @Test
-  @Tag("stage")
+  @Stage
   void placingOrderByLoggedIn() {
     checkoutShipping.givenOpenedCheckoutShippingWithProducts("/travel-diffuser-with-oil-10007666.html")
 

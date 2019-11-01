@@ -4,6 +4,8 @@ import pages.Home;
 import pages.PDP;
 import pages.SRP;
 import testConfig.BaseTest;
+import testConfig.tags.Prod;
+import testConfig.tags.Stage;
 
 class OperationsAtSearchTest extends BaseTest {
 
@@ -11,8 +13,8 @@ class OperationsAtSearchTest extends BaseTest {
   private PDP pdp = new PDP();
   private SRP srp = new SRP();
 
-  @Test
-  @Tag("prod")
+  @Stage
+  @Prod
   void searchBySKU() {
     home.open()
             .activateSearching()
@@ -20,8 +22,8 @@ class OperationsAtSearchTest extends BaseTest {
     pdp.assertSKU(10007667);
   }
 
-  @Test
-  @Tag("prod")
+  @Stage
+  @Prod
   void sortByPriceSearchResultPage() {
     srp.givenSearchResultPageFor("Book")
             .selectSortBy("Price (high to low)")

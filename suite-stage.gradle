@@ -1,0 +1,2 @@
+ext.junitIncludeTags = ['stage']
+ext.junitExcludeTags = []

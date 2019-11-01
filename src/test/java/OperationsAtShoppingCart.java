@@ -2,14 +2,15 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.ShoppingCart;
 import testConfig.BaseTest;
+import testConfig.tags.Prod;
+import testConfig.tags.Stage;
 
 class OperationsAtShoppingCart extends BaseTest {
 
   private ShoppingCart cart = new ShoppingCart();
 
-  @Test
-  @Tag("stage")
-  @Tag("prod")
+  @Stage
+  @Prod
   void editQuantity() {
     cart.givenOpenedShoppingCartWithProducts("/muse-volcano-candle-10007904.html")
             .setQty(2)
@@ -19,9 +20,8 @@ class OperationsAtShoppingCart extends BaseTest {
             .assertPriceAndSubtotal("$36.95", "$73.90");
   }
 
-  @Test
-  @Tag("stage")
-  @Tag("prod")
+  @Stage
+  @Prod
   void deleting() {
     cart.givenOpenedShoppingCartWithProducts("/playful-puppy-plush-10003557.html", "/canvas-wine-bag-10000015.html")
             .delete(1)
@@ -30,9 +30,8 @@ class OperationsAtShoppingCart extends BaseTest {
             .assertMessage("You have no items in your shopping bag.");
   }
 
-  @Test
-  @Tag("stage")
-  @Tag("prod")
+  @Stage
+  @Prod
   void estimateShippingAndTax() {
     cart.givenOpenedShoppingCartWithProducts("/canvas-wine-bag-10000015.html")
             .expandEstimateShippingAndTaxBlock()
@@ -40,8 +39,7 @@ class OperationsAtShoppingCart extends BaseTest {
             .assertDelivery("2nd Day", "$19.95");
   }
 
-  @Test
-  @Tag("stage")
+  @Stage
   void applyDiscountCode() {
     cart.givenOpenedShoppingCartWithProducts("/woodland-babe-bunny-520172.html")
             .expandDiscountBlock()
@@ -49,8 +47,7 @@ class OperationsAtShoppingCart extends BaseTest {
             .assertOrderSummaryDiscount("-$1.00");
   }
 
-  @Test
-  @Tag("stage")
+  @Stage
   void removeDiscountCode() {
     cart.givenOpenedShoppingCartWithDiscountCodeForSubscriptionProduct("gorilla007",
             "/paper-source-subscription-box-10008860.html")

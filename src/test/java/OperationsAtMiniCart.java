@@ -1,24 +1,22 @@
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 import pages.Header;
 import testConfig.BaseTest;
+import testConfig.tags.Prod;
+import testConfig.tags.Stage;
 
 class OperationsAtMiniCart extends BaseTest {
 
   private Header header = new Header();
 
-  @Test
-  @Tag("stage")
-  @Tag("prod")
+  @Stage
+  @Prod
   void editingQuantity() {
     header.miniCart().givenOpenedMiniCartWithProduct("/flourishing-roses-wreath-kit-10007825.html")
             .setQty(2)
             .assertCountTotal(2);
   }
 
-  @Test
-  @Tag("stage")
-  @Tag("prod")
+  @Stage
+  @Prod
   void deleting() {
     header.miniCart().givenOpenedMiniCartWithProduct("/wine-and-naps-pouch-10007635.html")
             .delete()
