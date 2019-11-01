@@ -1,14 +1,19 @@
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
-import pages.CheckoutPayment;
+import api.AccountApi;
+import org.junit.jupiter.api.BeforeAll;
 import pages.CheckoutShipping;
-import pages.Success;
 import testConfig.BaseTest;
 import testConfig.tags.Stage;
+
+import static pages.Account.EMAIL;
 
 class OperationsAtCheckoutTest extends BaseTest {
 
   private CheckoutShipping checkoutShipping = new CheckoutShipping();
+
+  @BeforeAll
+  static void givenUserAccount() {
+    AccountApi.createAccount();
+  }
 
   @Stage
   void placingOrderWithDiscountByGuest() {

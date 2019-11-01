@@ -2,16 +2,15 @@ package pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
-import testConfig.Helpers;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Double.parseDouble;
 import static org.junit.jupiter.api.Assertions.*;
+import static pages.widgets.SubscriptionForm.closeSubscriptionForm;
 
-public class PLP extends Helpers {
+public class PLP {
 
   private ElementsCollection toolBar = $$("#authenticationPopup+.toolbar div");
   private ElementsCollection productGrid = $$(".product-items>li");
@@ -19,7 +18,6 @@ public class PLP extends Helpers {
   @Step("Open collection Sale")
   public PLP givenOpenedCollectionsSale() {
     open("/collections/sale");
-    closeSubscriptionForm();
     closeSubscriptionForm();
     return this;
   }
@@ -82,7 +80,6 @@ public class PLP extends Helpers {
   }
 
   private double getPriceFor(int productIndex) {
-    closeSubscriptionForm();
     String price = productGrid.get(productIndex).find(".price").shouldHave(visible).getText();
     return parseDouble(price.replace("$", ""));
   }

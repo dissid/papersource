@@ -2,23 +2,21 @@ package pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Step;
-import testConfig.Helpers;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Double.parseDouble;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static pages.widgets.SubscriptionForm.closeSubscriptionForm;
 
-public class SRP extends Helpers {
+public class SRP {
 
   private Home home = new Home();
   private ElementsCollection productGrid = $$(".product-items>li");
 
   @Step("Open Search Result page for query - {query}")
   public SRP givenSearchResultPageFor(String query) {
-    home.open()
-            .activateSearching()
-            .search(query);
+    home.open().activateSearching().search(query);
     return this;
   }
 

@@ -2,18 +2,18 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
-import pages.widgets.CustomerMenu;
-import testConfig.Helpers;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static pages.widgets.SubscriptionForm.closeSubscriptionForm;
 
-public class Registration extends Helpers {
+public class Registration {
 
   @Step("Open Account Registration page")
-  public Registration givenOpenedRegistration() {
-    open("/customer/account/create/");
+  public Registration open() {
+    Selenide.open("/customer/account/create/");
+    closeSubscriptionForm();
     return this;
   }
 

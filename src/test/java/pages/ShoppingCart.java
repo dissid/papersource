@@ -3,13 +3,13 @@ package pages;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import testConfig.Helpers;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.support.ui.ExpectedConditions.jsReturnsValue;
+import static pages.widgets.SubscriptionForm.closeSubscriptionForm;
 
-public class ShoppingCart extends Helpers {
+public class ShoppingCart {
 
   private PDP pdp = new PDP();
   private SelenideElement qty = $("input[data-role='cart-item-qty']");
@@ -115,7 +115,6 @@ public class ShoppingCart extends Helpers {
 
   @Step("Assert size - {value} in Mini Cart")
   public ShoppingCart assertMiniCartSize(int value) {
-    Wait().until(jsReturnsValue("return document.readyState === 'complete'"));
     $(".counter-number").shouldHave(exactText(Integer.toString(value)));
     return this;
   }

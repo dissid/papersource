@@ -19,8 +19,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.jsReturnsValue;
 
 public class BaseTest {
 
-  protected final static String EMAIL = randomAlphabetic(8) + "@yopmail.com";
-
   @BeforeAll
   public static void setup() {
     Configuration.baseUrl = System.getProperty("selenide.baseUrl", "https://staging.papersource.com/");
@@ -29,26 +27,6 @@ public class BaseTest {
     Configuration.startMaximized = true;
     Configuration.fastSetValue = true;
     SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
-
-    RestAssured
-            .given()
-            .contentType(ContentType.JSON)
-            .accept(ContentType.JSON)
-            .filters(new RequestLoggingFilter(), new ResponseLoggingFilter())
-            .body("{ \n" +
-                    "\"customer\": {\n" +
-                    "\"email\": " + "\"" + EMAIL + "\", \n" +
-                    "\"firstname\": \"Automation\", \n" +
-                    "\"lastname\": \"Test\", \n" +
-                    "\"website_id\":1, \n" +
-                    "\"group_id\":1\n" +
-                    "\t\t},\n" +
-                    "\n" +
-                    "\"password\": \"Q1w2e3r4\"\n" +
-                    "\n" +
-                    "}")
-            .when()
-            .post("/rest/V1/customers");
   }
 
   @BeforeEach

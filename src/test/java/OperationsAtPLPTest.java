@@ -1,5 +1,3 @@
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 import pages.PLP;
 import testConfig.BaseTest;
 import testConfig.tags.Prod;
@@ -7,12 +5,12 @@ import testConfig.tags.Stage;
 
 class OperationsAtPLPTest extends BaseTest {
 
-  private PLP PLP = new PLP();
+  private PLP plp = new PLP();
 
   @Stage
   @Prod
   void changingProductsPerPage() {
-    PLP.givenOpenedCollectionsSale()
+    plp.givenOpenedCollectionsSale()
             .selectPerPage(96)
             .assertGridQuantity(96);
   }
@@ -20,7 +18,7 @@ class OperationsAtPLPTest extends BaseTest {
   @Stage
   @Prod
   void selectingFilter() {
-    PLP.givenOpenedGiftHomeDrinkware()
+    plp.givenOpenedGiftHomeDrinkware()
             .selectFilterAndAssertCount("Sugarfina", 1)
             .assertGridQuantity(1)
             .assertResultNumber(1);
@@ -29,7 +27,7 @@ class OperationsAtPLPTest extends BaseTest {
   @Stage
   @Prod
   void selectingSortByPrice() {
-    PLP.givenOpenedStationerySetsWithSortedByPrice()
+    plp.givenOpenedStationerySetsWithSortedByPrice()
             .assertAscendingPriceFor(0, 1)
             .sortByDescending()
             .assertDescendingPriceFor(0, 1);

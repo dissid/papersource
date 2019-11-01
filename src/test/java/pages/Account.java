@@ -2,12 +2,15 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
-import testConfig.Helpers;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static pages.widgets.SubscriptionForm.closeSubscriptionForm;
 
-public class Account extends Helpers {
+public class Account{
+
+  public final static String EMAIL = randomAlphabetic(8) + "@yopmail.com";
 
   @Step("Open My Account page")
   public Account open(){
