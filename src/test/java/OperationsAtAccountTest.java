@@ -52,6 +52,6 @@ class OperationsAtAccountTest extends BaseTest {
             .submit()
             .assertAccount("Smoke Edited", "Automation Edited", EMAIL);
 
-    new Header().customerMenu().logout();
+    new Header().customerMenu().open().logout();
   }
 }
