@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
@@ -103,7 +104,8 @@ public class ShoppingCart {
 
   @Step("Assert delivery method - {method} and price - {price}")
   public ShoppingCart assertDelivery(String method, String price) {
-    $$("input[name='estimate_method']+label").findBy(exactText(method + " " + price)).shouldBe(visible);
+    $$("input[name='estimate_method']+label").find(exactText(method + " " + price)).shouldBe(visible);
+           // findBy(exactText(method + " " + price)).shouldBe(visible);
     return this;
   }
 

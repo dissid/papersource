@@ -34,6 +34,7 @@ public class Registration {
 
   @Step("Set personal info: Name - {firstName} Last Name - {lastName}")
   public Registration setPersonal(String firstName, String lastName) {
+    closeSubscriptionForm();
     $("#firstname").setValue(firstName);
     $("#lastname").setValue(lastName);
     return this;

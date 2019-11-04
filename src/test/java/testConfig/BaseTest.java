@@ -23,7 +23,7 @@ public class BaseTest {
   public static void setup() {
     Configuration.baseUrl = System.getProperty("selenide.baseUrl", "https://staging.papersource.com/");
     Configuration.timeout = 10000;
-    RestAssured.baseURI = "https://staging.papersource.com";
+    RestAssured.baseURI = System.getProperty("selenide.baseUrl", "https://staging.papersource.com/");;
     Configuration.startMaximized = true;
     Configuration.fastSetValue = true;
     SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
@@ -35,8 +35,6 @@ public class BaseTest {
       clearBrowserCookies();
       clearBrowserLocalStorage();
       refresh();
-      clearBrowserLocalStorage();
-      clearBrowserCookies();
     }
   }
 }

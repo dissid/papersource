@@ -1,12 +1,16 @@
-import org.junit.jupiter.api.Test;
 import testConfig.BaseTest;
+import testConfig.tags.All;
+import testConfig.tags.Stage;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
+import static org.openqa.selenium.By.cssSelector;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBe;
 
+@All
 class OperationsAtOrderTest extends BaseTest {
 
-  @Test
+  @Stage
   void placingOrderByGuest() {
     open("/");
 
@@ -15,6 +19,7 @@ class OperationsAtOrderTest extends BaseTest {
     openNewArrivals();
 
     openFirstProduct();
+    enterProductCustomText("Test Text 123");
     addToCart();
 
     openMiniCart();
@@ -38,6 +43,10 @@ class OperationsAtOrderTest extends BaseTest {
 
     placeOrder();
     assertOrderNumberNotEmpty();
+  }
+
+  private void enterProductCustomText(String text) {
+    $(".product-custom-option").setValue(text);
   }
 
 
@@ -120,6 +129,7 @@ class OperationsAtOrderTest extends BaseTest {
 
   private void addToCart() {
     $("#product-addtocart-button").click();
+    waitUntilProductAddedToCart();
   }
 
   private void openFirstProduct() {
@@ -133,5 +143,9 @@ class OperationsAtOrderTest extends BaseTest {
   private void closeSubscriptionForm() {
     executeJavaScript("if (document.querySelector('.modals-overlay--welcome') !== null)" +
             "document.querySelector('.modals-overlay--welcome').click()");
+  }
+
+  private void waitUntilProductAddedToCart() {
+    Wait().until(textToBe(cssSelector("#product-addtocart-button"), "ADD TO CART"));
   }
 }

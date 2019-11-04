@@ -1,8 +1,10 @@
 import pages.Header;
 import testConfig.BaseTest;
+import testConfig.tags.All;
 import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
+@All
 class OperationsAtMiniCart extends BaseTest {
 
   private Header header = new Header();

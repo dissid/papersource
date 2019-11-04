@@ -1,15 +1,18 @@
 import api.AccountApi;
 import org.junit.jupiter.api.BeforeAll;
 import pages.Account;
+import pages.Header;
 import pages.Registration;
 import pages.YopMail;
 import testConfig.BaseTest;
+import testConfig.tags.All;
 import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static pages.Account.EMAIL;
 
+@All
 class OperationsAtAccountTest extends BaseTest {
 
   private Registration registration = new Registration();
@@ -33,6 +36,7 @@ class OperationsAtAccountTest extends BaseTest {
   }
 
   @Stage
+  @Prod
   void email() {
     yopMail.open()
             .loginBy(EMAIL)
@@ -47,5 +51,7 @@ class OperationsAtAccountTest extends BaseTest {
             .edit("Smoke Edited", "Automation Edited")
             .submit()
             .assertAccount("Smoke Edited", "Automation Edited", EMAIL);
+
+    new Header().customerMenu().logout();
   }
 }

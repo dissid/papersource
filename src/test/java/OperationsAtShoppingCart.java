@@ -1,10 +1,10 @@
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 import pages.ShoppingCart;
 import testConfig.BaseTest;
+import testConfig.tags.All;
 import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
+@All
 class OperationsAtShoppingCart extends BaseTest {
 
   private ShoppingCart cart = new ShoppingCart();

@@ -7,7 +7,7 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Double.parseDouble;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static pages.widgets.SubscriptionForm.closeSubscriptionForm;
 
 public class PLP {
@@ -38,6 +38,8 @@ public class PLP {
 
   @Step("Select filter - {value} with quantity - {quantity}")
   public PLP selectFilterAndAssertCount(String value, int quantity) {
+    closeSubscriptionForm();
+    closeSubscriptionForm();
     toolBar.findBy(cssClass("filters-amount")).click();
     $$(".filter-options-content a").findBy(matchesText(value + " " + quantity)).click();
     return this;
@@ -57,6 +59,7 @@ public class PLP {
 
   @Step("Sort by descending")
   public PLP sortByDescending() {
+    closeSubscriptionForm();
     toolBar.findBy(cssClass("toolbar-sorter")).find("a[data-value='desc']").click();
     return this;
   }

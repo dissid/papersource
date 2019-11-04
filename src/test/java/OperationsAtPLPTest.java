@@ -1,8 +1,10 @@
 import pages.PLP;
 import testConfig.BaseTest;
+import testConfig.tags.All;
 import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
+@All
 class OperationsAtPLPTest extends BaseTest {
 
   private PLP plp = new PLP();

@@ -64,8 +64,8 @@ public class PDP {
 
     @Step("Click <Next> button")
     public PDP next() {
-        loader.waitUntil(disappear, 15000);
-        $("iframe.cke_reset").waitUntil(visible, 15000);
+        loader.waitUntil(disappear, 60000);
+        $("iframe.cke_reset").waitUntil(visible, 60000);
         $(".gartner-btn.hide.btn-next").click();
         return this;
     }

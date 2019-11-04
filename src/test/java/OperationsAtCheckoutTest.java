@@ -1,11 +1,15 @@
 import api.AccountApi;
 import org.junit.jupiter.api.BeforeAll;
 import pages.CheckoutShipping;
+import pages.widgets.ConfirmationDialog;
 import testConfig.BaseTest;
+import testConfig.tags.All;
+import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
 import static pages.Account.EMAIL;
 
+@All
 class OperationsAtCheckoutTest extends BaseTest {
 
   private CheckoutShipping checkoutShipping = new CheckoutShipping();
@@ -56,6 +60,48 @@ class OperationsAtCheckoutTest extends BaseTest {
 
             .placeOrder()
             .assertOrderNumberNotEmpty();
+  }
+
+  @Prod
+  void placingOrderOnProductionByGuest() {
+    checkoutShipping.givenOpenedCheckoutShippingWithProducts("/travel-diffuser-with-oil-10007666.html")
+
+            .signIn(EMAIL, "Q1w2e3r4")
+            .setStreets("111 W Jackson", "222 W Jackson")
+            .setCompany("Gorilla Group")
+            .setCity("New York")
+            .selectState("New York")
+            .setZipCode(10005)
+            .selectCountry("United States")
+            .setPhone(1234567890)
+            .selectShippingMethod("Ground (1-5 business days)")
+            .next()
+
+            .setCreditCard(4111111111111111L, 12, 2029, 111)
+            .placeOrder();
+
+    new ConfirmationDialog().checkModalText("First Data Gateway: Invalid CC Number");
+  }
+
+  @Prod
+  void placingOrderOnProductionByLoggedIn() {
+    checkoutShipping.givenOpenedCheckoutShippingWithProducts("/travel-diffuser-with-oil-10007666.html")
+
+            .signIn(EMAIL, "Q1w2e3r4")
+            .setStreets("111 W Jackson", "222 W Jackson")
+            .setCompany("Gorilla Group")
+            .setCity("New York")
+            .selectState("New York")
+            .setZipCode(10005)
+            .selectCountry("United States")
+            .setPhone(1234567890)
+            .selectShippingMethod("Ground (1-5 business days)")
+            .next()
+
+            .setCreditCard(4111111111111111L, 12, 2029, 111)
+
+            .placeOrder();
+    new ConfirmationDialog().checkModalText("First Data Gateway: Invalid CC Number");
   }
 
 }

@@ -24,6 +24,7 @@ public class Home {
 
     @Step("Search query - {query}")
     public Home search(String query) {
+        closeSubscriptionForm();
         $("#search").setValue(query).pressEnter();
         return this;
     }
