@@ -25,7 +25,6 @@ public class Registration {
 
   @Step("Set sign info: Email - {email} Pass - {password} Confirm Pass - {confirmPassword}")
   public Registration setSignIn(String email, String password, String confirmPassword) {
-    closeSubscriptionForm();
     $("#email_address").setValue(email);
     $("#password").setValue(password);
     $("#password-confirmation").setValue(confirmPassword);

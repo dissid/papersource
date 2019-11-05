@@ -16,7 +16,7 @@ public class CustomerMenu {
 
   @Step("Open Customer menu")
   public CustomerMenu open() {
-    this.menu.click();
+    this.menu.waitUntil(visible, 5000).click();
     return this;
   }
 

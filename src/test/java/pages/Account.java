@@ -43,7 +43,6 @@ public class Account{
 
   @Step("Click <Submit> button")
   public Account submit() {
-    closeSubscriptionForm();
     $(".form-edit-account").find("[type='submit']").click();
     return this;
   }
