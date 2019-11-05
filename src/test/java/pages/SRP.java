@@ -34,7 +34,6 @@ public class SRP {
   }
 
   private double getPriceFor(int productIndex) {
-    closeSubscriptionForm();
     String price = productGrid.get(productIndex).find(".price").shouldHave(visible).getText();
     return parseDouble(price.replace("$", ""));
   }

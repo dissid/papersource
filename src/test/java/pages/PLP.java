@@ -38,8 +38,6 @@ public class PLP {
 
   @Step("Select filter - {value} with quantity - {quantity}")
   public PLP selectFilterAndAssertCount(String value, int quantity) {
-    closeSubscriptionForm();
-    closeSubscriptionForm();
     toolBar.findBy(cssClass("filters-amount")).click();
     $$(".filter-options-content a").findBy(matchesText(value + " " + quantity)).click();
     return this;

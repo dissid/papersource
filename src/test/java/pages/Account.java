@@ -15,13 +15,13 @@ public class Account{
   @Step("Open My Account page")
   public Account open(){
     Selenide.open("/customer/account/");
+    closeSubscriptionForm();
     return this;
   }
 
   @Step("Login by {email} - {password}")
   public Account givenOpenedMyAccount(String email, String password) {
     open();
-    closeSubscriptionForm();
     $("#email").setValue(email);
     $("#pass").setValue(password);
     $("#send2").click();
