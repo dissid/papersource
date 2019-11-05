@@ -17,14 +17,12 @@ public class Home {
 
     @Step("Click Search icon")
     public Home activateSearching() {
-        closeSubscriptionForm();
         $("#search-icon").shouldHave(visible).click();
         return this;
     }
 
     @Step("Search query - {query}")
     public Home search(String query) {
-        closeSubscriptionForm();
         $("#search").setValue(query).pressEnter();
         return this;
     }

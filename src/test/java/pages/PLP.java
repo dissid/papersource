@@ -59,7 +59,6 @@ public class PLP {
 
   @Step("Sort by descending")
   public PLP sortByDescending() {
-    closeSubscriptionForm();
     toolBar.findBy(cssClass("toolbar-sorter")).find("a[data-value='desc']").click();
     return this;
   }

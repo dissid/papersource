@@ -4,7 +4,9 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.conditions.ExactText;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -16,7 +18,8 @@ public class ConfirmationDialog {
 
   @Step("Confirm deleting")
   public void confirm() {
-    container.find(".action-accept").waitUntil(visible, 10000).click();
+    Wait().until(ExpectedConditions.elementToBeClickable(By.cssSelector(".action-accept")));
+    container.find(".action-accept").click();
   }
 
   @Step

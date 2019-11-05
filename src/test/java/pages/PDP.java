@@ -17,7 +17,8 @@ public class PDP {
     @Step("Open PDP of {path}")
     public PDP open(String path) {
         Selenide.open(path);
-        closeSubscriptionForm();
+        executeJavaScript("if(document.querySelector('.modals-overlay--welcome') !== null)" +
+                "document.querySelector('.modals-overlay--welcome').click()");
         return this;
     }
 
