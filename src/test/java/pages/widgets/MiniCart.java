@@ -10,15 +10,15 @@ import static com.codeborne.selenide.Selenide.$;
 public class MiniCart {
 
   private PDP pdp = new PDP();
-  private SelenideElement container;
+  private SelenideElement miniCart;
 
-  public MiniCart(SelenideElement container) {
-    this.container = container;
+  public MiniCart(SelenideElement miniCart) {
+    this.miniCart = miniCart;
   }
 
   @Step("Open Mini Cart")
   private MiniCart open() {
-    container.click();
+    miniCart.click();
     return this;
   }
 
@@ -31,14 +31,14 @@ public class MiniCart {
 
   @Step("Set quantity - {qty}")
   public MiniCart setQty(int qty) {
-    container.find(".item-qty").setValue(Integer.toString(qty));
-    container.find(".update-cart-item").click();
+    miniCart.find(".item-qty").setValue(Integer.toString(qty));
+    miniCart.find(".update-cart-item").click();
     return this;
   }
 
   @Step("Delete product")
   public MiniCart delete() {
-    container.find(".paper-trash").click();
+    miniCart.find(".paper-trash").click();
 
     new ConfirmationDialog().confirm();
     return this;
@@ -46,12 +46,12 @@ public class MiniCart {
 
   @Step("Assert mini cart total - {count}")
   public void assertCountTotal(int count) {
-    container.find(".count").shouldHave(exactText(Integer.toString(count)));
+    miniCart.find(".count").shouldHave(exactText(Integer.toString(count)));
   }
 
   @Step("Assert message - {text}")
   public void assertMessage(String text) {
-    container.find(".block-content").shouldHave(exactText(text));
+    miniCart.find("strong.empty").shouldHave(exactText(text));
   }
 
 }

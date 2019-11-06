@@ -22,7 +22,7 @@ public class ConfirmationDialog {
     container.find(".action-accept").click();
   }
 
-  @Step
+  @Step("Check modal text")
   public void checkModalText(String text){
     container.find(".confirm .modal-content").waitUntil(visible, 10000).shouldHave(exactText(text));
   }

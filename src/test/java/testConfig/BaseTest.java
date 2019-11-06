@@ -35,6 +35,8 @@ public class BaseTest {
       clearBrowserCookies();
       clearBrowserLocalStorage();
       refresh();
+      clearBrowserCookies();
+      clearBrowserLocalStorage();
     }
   }
 }
