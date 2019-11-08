@@ -18,6 +18,7 @@ public class PDP {
     public PDP open(String path) {
         Selenide.open(path);
         executeJavaScript("if(document.querySelector('.modals-overlay--welcome') !== null)" +
+                "document.querySelector('.modals-overlay--welcome').click()" +
                 "document.querySelector('.modals-overlay--welcome').click()");
         return this;
     }
@@ -81,7 +82,7 @@ public class PDP {
     @Step("Click <Add To Bag> button")
     public PDP addToBag() {
         $("#reviewed-ok").click();
-        $(".js-add-to-cart").waitUntil(visible, 15000).click();
+        $(".js-add-to-cart").waitUntil(visible, 60000).click();
         return this;
     }
 
