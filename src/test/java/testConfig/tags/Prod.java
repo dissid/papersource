@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@Tag("prod")
+@Tag("Prod")
 @Test
 public @interface Prod {
 }

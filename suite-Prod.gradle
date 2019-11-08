@@ -1,0 +1,2 @@
+ext.junitIncludeTags = ['Prod']
+ext.junitExcludeTags = []

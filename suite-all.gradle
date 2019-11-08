@@ -1,2 +1,0 @@
-ext.junitIncludeTags = ['all']
-ext.junitExcludeTags = []

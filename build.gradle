@@ -19,7 +19,7 @@ dependencies {
     testCompile group: 'io.rest-assured', name: 'rest-assured', version: '4.1.1'
     compile group: 'io.qameta.allure', name: 'allure-selenide', version: '2.13.0'
 }
-if (!hasProperty('suite')) ext.suite = 'all'
+if (!hasProperty('suite')) ext.suite = 'All'
 
 apply from: "suite-${suite}.gradle"
 

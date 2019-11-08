@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@Tag("stage")
+@Tag("Stage")
 @Test
 public @interface Stage {
 }
