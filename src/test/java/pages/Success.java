@@ -14,7 +14,7 @@ public class Success {
   @Step("Assert that order number is not empty")
   public void assertOrderNumberNotEmpty() {
     orderNumber.shouldBe(visible);
-    assertEquals(orderNumber.getText()
+    assertEquals(orderNumber.waitUntil(visible,60000).getText()
             .substring(orderNumber.getText().length() - 12, orderNumber.getText().length() - 1).length(), 11);
   }
 }

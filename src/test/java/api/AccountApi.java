@@ -4,11 +4,13 @@ import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
+
 import static pages.Account.EMAIL;
+import static pages.Account.PASSWORD;
 
 public class AccountApi {
 
-  public static void createAccount(){
+  public static void createAccount() {
     RestAssured
             .given()
             .contentType(ContentType.JSON)
@@ -23,7 +25,7 @@ public class AccountApi {
                     "\"group_id\":1\n" +
                     "\t\t},\n" +
                     "\n" +
-                    "\"password\": \"Q1w2e3r4\"\n" +
+                    "\"password\": \"" + PASSWORD + "\"\n" +
                     "\n" +
                     "}")
             .when()

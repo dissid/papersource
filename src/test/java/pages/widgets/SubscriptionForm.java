@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 public class SubscriptionForm {
 
   public static void closeSubscriptionForm() {
-    $(".modals-overlay--welcome").waitUntil(visible, 10000);
+    $(".modals-overlay--welcome").waitUntil(visible, 60000);
     executeJavaScript("document.querySelector('.modals-overlay--welcome').click()");
   }
 }

@@ -11,6 +11,7 @@ import testConfig.tags.Stage;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static pages.Account.EMAIL;
+import static pages.Account.PASSWORD;
 
 @All
 class OperationsAtAccountTest extends BaseTest {
@@ -46,7 +47,7 @@ class OperationsAtAccountTest extends BaseTest {
   @Stage
   @Prod
   void editing() {
-    account.givenOpenedMyAccount(EMAIL, "Q1w2e3r4")
+    account.givenOpenedMyAccount(EMAIL, PASSWORD)
             .activeEditing()
             .edit("Smoke Edited", "Automation Edited")
             .submit()

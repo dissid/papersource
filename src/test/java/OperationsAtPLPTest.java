@@ -4,6 +4,8 @@ import testConfig.tags.All;
 import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
+import javax.annotation.PreDestroy;
+
 @All
 class OperationsAtPLPTest extends BaseTest {
 
@@ -27,11 +29,18 @@ class OperationsAtPLPTest extends BaseTest {
   }
 
   @Stage
-  @Prod
   void selectingSortByPrice() {
     plp.givenOpenedStationerySetsWithSortedByPrice()
             .assertAscendingPriceFor(0, 1)
             .sortByDescending()
             .assertDescendingPriceFor(0, 1);
+  }
+
+  @Prod
+  void selectingSortByPriceOnProduction() {
+    plp.givenOpenedStationerySetsWithSortedByPrice()
+            .assertAscendingPriceFor(6, 7)
+            .sortByDescending()
+            .assertDescendingPriceFor(6, 7);
   }
 }

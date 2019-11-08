@@ -21,12 +21,17 @@ public class BaseTest {
 
   @BeforeAll
   public static void setup() {
+    Configuration.driverManagerEnabled = false;
+    Configuration.remote = "http://172.20.104.16:4444/wd/hub";
     Configuration.baseUrl = System.getProperty("selenide.baseUrl", "https://staging.papersource.com/");
     Configuration.timeout = 10000;
-    RestAssured.baseURI = System.getProperty("selenide.baseUrl", "https://staging.papersource.com/");;
+    RestAssured.baseURI = Configuration.baseUrl;
     Configuration.startMaximized = true;
     Configuration.fastSetValue = true;
+    Configuration.browser = "chrome";
     SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
+
+
   }
 
   @BeforeEach

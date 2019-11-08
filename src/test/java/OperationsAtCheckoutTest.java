@@ -8,6 +8,7 @@ import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
 import static pages.Account.EMAIL;
+import static pages.Account.PASSWORD;
 
 @All
 class OperationsAtCheckoutTest extends BaseTest {
@@ -45,7 +46,7 @@ class OperationsAtCheckoutTest extends BaseTest {
   void placingOrderByLoggedIn() {
     checkoutShipping.givenOpenedCheckoutShippingWithProducts("/travel-diffuser-with-oil-10007666.html")
 
-            .signIn(EMAIL, "Q1w2e3r4")
+            .signIn(EMAIL, PASSWORD)
             .setStreets("111 W Jackson", "222 W Jackson")
             .setCompany("Gorilla Group")
             .setCity("New York")
@@ -66,7 +67,7 @@ class OperationsAtCheckoutTest extends BaseTest {
   void placingOrderOnProductionByGuest() {
     checkoutShipping.givenOpenedCheckoutShippingWithProducts("/travel-diffuser-with-oil-10007666.html")
 
-            .signIn(EMAIL, "Q1w2e3r4")
+            .setUserInfo(EMAIL, "Automation", "Test")
             .setStreets("111 W Jackson", "222 W Jackson")
             .setCompany("Gorilla Group")
             .setCity("New York")

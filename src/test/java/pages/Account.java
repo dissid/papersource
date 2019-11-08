@@ -11,6 +11,7 @@ import static pages.widgets.SubscriptionForm.closeSubscriptionForm;
 public class Account{
 
   public final static String EMAIL = randomAlphabetic(8) + "@yopmail.com";
+  public final static String PASSWORD = "Q1w2e3r4";
 
   @Step("Open My Account page")
   public Account open(){
