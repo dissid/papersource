@@ -22,7 +22,7 @@ public class BaseTest {
   @BeforeAll
   public static void setup() {
     Configuration.driverManagerEnabled = false;
-    Configuration.remote = "http://167.172.231.205:4444/wd/hub";
+    Configuration.remote = "http://172.20.104.16:4444/wd/hub";
     Configuration.baseUrl = System.getProperty("selenide.baseUrl", "https://staging.papersource.com/");
     Configuration.timeout = 10000;
     RestAssured.baseURI = Configuration.baseUrl;
