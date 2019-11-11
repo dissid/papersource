@@ -5,7 +5,7 @@ import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
 @All
-class OperationsAtShoppingCart extends BaseTest {
+class OperationsAtShoppingCartTest extends BaseTest {
 
   private ShoppingCart cart = new ShoppingCart();
 

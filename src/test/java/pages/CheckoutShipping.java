@@ -4,8 +4,8 @@ import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
-import static org.openqa.selenium.support.ui.ExpectedConditions.jsReturnsValue;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class CheckoutShipping {
 
@@ -37,10 +37,9 @@ public class CheckoutShipping {
   @Step("Sign in by email - {email} password - {password}")
   public CheckoutShipping signIn(String email, String password) {
     $("#customer-email").setValue(email).pressEnter();
-    $("#customer-password").shouldBe(visible).setValue(password);
+    $("#customer-password").waitUntil(visible,30000).setValue(password);
     $("button.login").click();
-    $(".loader").waitUntil(disappear, 15000);
-    Wait().until(jsReturnsValue("return document.readyState === 'complete'"));
+    $(".loader").waitUntil(disappear, 30000);
     return this;
   }
 
