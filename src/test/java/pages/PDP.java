@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.*;
@@ -17,9 +18,7 @@ public class PDP {
     @Step("Open PDP of {path}")
     public PDP open(String path) {
         Selenide.open(path);
-        executeJavaScript("if(document.querySelector('.modals-overlay--welcome') !== null)" +
-                "document.querySelector('.modals-overlay--welcome').click()" +
-                "document.querySelector('.modals-overlay--welcome').click()");
+        closeSubscriptionForm();
         return this;
     }
 
@@ -113,6 +112,11 @@ public class PDP {
     @Step("Assert SKU - {value}")
     public void assertSKU(int value) {
         $("div[itemprop=sku]").shouldHave(exactText(Integer.toString(value)));
+    }
+
+    public PDP clearSubscriptionCookie(){
+        WebDriverRunner.getWebDriver().manage().deleteCookieNamed("welcome_signup");
+        return this;
     }
 
     private void waitUntilProductAddedToCart() {

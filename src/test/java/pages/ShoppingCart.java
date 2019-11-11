@@ -61,8 +61,8 @@ public class ShoppingCart {
   }
 
   @Step("Delete product by index - {index}")
-  public ShoppingCart delete(int index) {
-    $$(".action-delete").get(index).click();
+  public ShoppingCart delete(int productIndex) {
+    $$(".action-delete").get(productIndex).click();
     return this;
   }
 

@@ -12,20 +12,18 @@ class OperationsAtShoppingCart extends BaseTest {
   @Stage
   @Prod
   void editQuantity() {
-    cart.givenOpenedShoppingCartWithProducts("/muse-volcano-candle-10007904.html")
+    cart.givenOpenedShoppingCartWithProducts("/pencil-nose-game-10007940.html")
             .setQty(2)
             .updateCart()
             .assertQty(2)
             .assertMiniCartSize(2)
-            .assertPriceAndSubtotal("$36.95", "$73.90");
+            .assertPriceAndSubtotal("$26.95", "$53.90");
   }
 
   @Stage
   @Prod
   void deleting() {
-    cart.givenOpenedShoppingCartWithProducts("/playful-puppy-plush-10003557.html", "/canvas-wine-bag-10000015.html")
-            .delete(1)
-            .assertMiniCartSize(1)
+    cart.givenOpenedShoppingCartWithProducts("/little-nibble-bunny-10007288.html")
             .delete(0)
             .assertMessage("You have no items in your shopping bag.");
   }
@@ -33,7 +31,7 @@ class OperationsAtShoppingCart extends BaseTest {
   @Stage
   @Prod
   void estimateShippingAndTax() {
-    cart.givenOpenedShoppingCartWithProducts("/canvas-wine-bag-10000015.html")
+    cart.givenOpenedShoppingCartWithProducts("/squishamal-scavenger-hunt-10008254.html")
             .expandEstimateShippingAndTaxBlock()
             .estimateFor("United States", "Illinois", "60604")
             .assertDelivery("2nd Day", "$19.95");
@@ -41,7 +39,7 @@ class OperationsAtShoppingCart extends BaseTest {
 
   @Stage
   void applyDiscountCode() {
-    cart.givenOpenedShoppingCartWithProducts("/woodland-babe-bunny-520172.html")
+    cart.givenOpenedShoppingCartWithProducts("/wrapples-assortment-10007897.html")
             .expandDiscountBlock()
             .apply("gorilla007")
             .assertOrderSummaryDiscount("-$1.00");

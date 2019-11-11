@@ -102,6 +102,7 @@ class OperationsAtCheckoutTest extends BaseTest {
             .setCreditCard(4111111111111111L, 12, 2029, 111)
 
             .placeOrder();
+
     new ConfirmationDialog().checkModalText("First Data Gateway: Invalid CC Number");
   }
 
