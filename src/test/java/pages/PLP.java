@@ -31,7 +31,7 @@ public class PLP {
 
   @Step("Open sorted by price Stationery Sets page")
   public PLP givenOpenedStationarySaleWithSortedByPrice() {
-    open("/stationery/correspondence/sets?product_list_order=price");
+    open("/stationery/sale?product_list_order=price");
     closeSubscriptionForm();
     return this;
   }
