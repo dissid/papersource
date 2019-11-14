@@ -1,2 +1,2 @@
-ext.junitIncludeTags = ['All']
+ext.junitIncludeTags = ['Stage', 'Prod']
 ext.junitExcludeTags = []

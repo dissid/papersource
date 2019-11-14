@@ -29,9 +29,16 @@ public class PLP {
     return this;
   }
 
-  @Step("Open sorted by price Stationery Sets page with ")
-  public PLP givenOpenedStationerySetsWithSortedByPrice() {
+  @Step("Open sorted by price Stationery Sets page")
+  public PLP givenOpenedStationarySaleWithSortedByPrice() {
     open("/stationery/correspondence/sets?product_list_order=price");
+    closeSubscriptionForm();
+    return this;
+  }
+
+  @Step("Open sorted by price Gifts Sale page")
+  public PLP givenOpenedGiftsSaleWithSortedByPrice() {
+    open("/gifts/sale?product_list_order=price");
     closeSubscriptionForm();
     return this;
   }
@@ -69,18 +76,18 @@ public class PLP {
 
   @Step("Assert price from low to high for products index {firstProductIndex} and {secondProductIndex}")
   public PLP assertAscendingPriceFor(int firstProductIndex, int secondProductIndex) {
-    assertTrue(getPriceFor(firstProductIndex) < getPriceFor(secondProductIndex));
+    assertTrue(getPriceFor(firstProductIndex) <= getPriceFor(secondProductIndex));
     return this;
   }
 
   @Step("Assert price from high to low for products index {firstProductIndex} and {secondProductIndex}")
   public PLP assertDescendingPriceFor(int firstProductIndex, int secondProductIndex) {
-    assertTrue(getPriceFor(firstProductIndex) > getPriceFor(secondProductIndex));
+    assertTrue(getPriceFor(firstProductIndex) >= getPriceFor(secondProductIndex));
     return this;
   }
 
   private double getPriceFor(int productIndex) {
-    String price = productGrid.get(productIndex).find(".price").shouldHave(visible).getText();
+    String price = productGrid.get(productIndex).find("span.special-price .price").shouldHave(visible).getText();
     return parseDouble(price.replace("$", ""));
   }
 }

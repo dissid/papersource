@@ -1,14 +1,10 @@
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 import pages.Home;
 import pages.PDP;
 import pages.SRP;
 import testConfig.BaseTest;
-import testConfig.tags.All;
 import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
-@All
 class OperationsAtSearchTest extends BaseTest {
 
   private Home home = new Home();

@@ -5,7 +5,6 @@ import io.qameta.allure.Step;
 import pages.PDP;
 
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Selenide.$;
 
 public class MiniCart {
 

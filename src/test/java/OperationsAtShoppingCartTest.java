@@ -1,10 +1,8 @@
 import pages.ShoppingCart;
 import testConfig.BaseTest;
-import testConfig.tags.All;
 import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
-@All
 class OperationsAtShoppingCartTest extends BaseTest {
 
   private ShoppingCart cart = new ShoppingCart();
@@ -12,7 +10,7 @@ class OperationsAtShoppingCartTest extends BaseTest {
   @Stage
   @Prod
   void editQuantity() {
-    cart.givenOpenedShoppingCartWithProducts("/pencil-nose-game-10007940.html")
+    cart.givenOpenedShoppingCartWithProducts("/wrapples-assortment-10007897.html")
             .setQty(2)
             .updateCart()
             .assertQty(2)

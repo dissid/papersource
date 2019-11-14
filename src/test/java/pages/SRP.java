@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static java.lang.Double.parseDouble;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pages.widgets.SubscriptionForm.closeSubscriptionForm;
 
 public class SRP {
 

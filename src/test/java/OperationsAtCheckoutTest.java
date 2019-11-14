@@ -3,14 +3,12 @@ import org.junit.jupiter.api.BeforeAll;
 import pages.CheckoutShipping;
 import pages.widgets.ConfirmationDialog;
 import testConfig.BaseTest;
-import testConfig.tags.All;
 import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
 import static pages.Account.EMAIL;
 import static pages.Account.PASSWORD;
 
-@All
 class OperationsAtCheckoutTest extends BaseTest {
 
   private CheckoutShipping checkoutShipping = new CheckoutShipping();

@@ -5,7 +5,6 @@ import pages.Header;
 import pages.Registration;
 import pages.YopMail;
 import testConfig.BaseTest;
-import testConfig.tags.All;
 import testConfig.tags.Prod;
 import testConfig.tags.Stage;
 
@@ -13,7 +12,6 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static pages.Account.EMAIL;
 import static pages.Account.PASSWORD;
 
-@All
 class OperationsAtAccountTest extends BaseTest {
 
   private Registration registration = new Registration();
